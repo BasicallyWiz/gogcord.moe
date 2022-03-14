@@ -13,7 +13,7 @@
 }
 
 .dark-layer {
-  filter: brightness(82%);
+  filter: brightness(85%);
   background: inherit;
   height: 100vh;
   width: 100vw;
@@ -47,7 +47,7 @@
 
 .sub-section p {
   width: 80vw;
-  font-size: min(3vh, 5vw);
+  font-size: min(4vh, 5vw);
   text-align: center;
 }
 
