@@ -12,6 +12,14 @@
   width: 100vw;
 }
 
+@media (prefers-color-scheme: light) {
+  .site-body {
+    background-image: url(../Media/Images/white-gibbon.jpg);
+    background-position-x: 50%;
+    background-size: max(100vw, 180vh);
+  }
+}
+
 .dark-layer {
   filter: brightness(85%);
   background: inherit;
@@ -30,6 +38,7 @@
   height: 100vh;
   width: 100%;
   margin-bottom: 20vh;
+  color: white;
 }
 
 .sub-section > * {
