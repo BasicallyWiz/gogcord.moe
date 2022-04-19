@@ -2,6 +2,12 @@
   
 }
 
+.titlebar {
+  height: 0px !important;
+  visibility: hidden !important;
+  
+}
+
 .site-body {
   position: relative;
   background-image: url(../Media/Images/young-chimp-chilling.jpg);
