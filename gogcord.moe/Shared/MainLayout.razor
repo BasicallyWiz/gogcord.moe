@@ -1,15 +1,23 @@
 ﻿@inherits LayoutComponentBase
+@inject IJSRuntime JS;
+@using System.Messaging;
+@using gogcord.moe.Data;
 
 <PageTitle>gogcord.moe</PageTitle>
 
+<link rel="stylesheet" href="~/css/site.css"/>
+
 <div class="page">
-    <div class="sidebar">
+    <div class="gog-sidebar">
         <NavMenu />
     </div>
 
     <main>
         <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+            <div class="user-info" @onclick="StartLogin">
+              <img class="avatar" src="@AvatarURL"/>
+              <p class="username">@Username</p>
+            </div>
         </div>
 
         <article class="content px-4">
@@ -17,3 +25,48 @@
         </article>
     </main>
 </div>
+
+@code {
+  public string Username = "Not Logged in.";
+  public string AvatarURL = "https://cdn.discordapp.com/avatars/324588568951390220/a_31658556a19ee5eee3d521f4c18f8210.gif";
+
+  Queue<ClientQueueObject> ClientQueue = new();
+
+  public async Task StartLogin()
+  {
+    ClientQueue.Enqueue(new ClientQueueObject("CreateCookie", new List<string> { "cool_cookie", "I am a pretty cool cookie!" }));
+    Console.WriteLine("Poop");
+
+    //JS.InvokeVoidAsync("cookies.CreateCookie", new string[] { "Dick abll" } );
+  }
+
+  protected override async Task OnAfterRenderAsync(bool firstRender)
+  {
+    while (ClientQueue.Count > 0)
+    {
+      ClientQueueObject obj = ClientQueue.Dequeue();
+
+      Username = await GetCookie(obj.Args[0]);
+    }
+  }
+
+  async Task<string[]> GetAllCookies()
+  {
+    string cookiesBuffer = await JS.InvokeAsync<string>("ReadCookies");
+    return cookiesBuffer.Split("; ");
+  }
+
+  async Task<string> GetCookie(string CookieName)
+  {
+    string[] allCookies = await GetAllCookies();
+    foreach (string cookie in await GetAllCookies())
+    {
+      Console.WriteLine(cookie);
+      if (cookie.Split("=")[0] == CookieName)
+      {
+        return cookie;
+      }
+    }
+    return "ERROR_NO_COOKIE_MATCH";
+  }
+}

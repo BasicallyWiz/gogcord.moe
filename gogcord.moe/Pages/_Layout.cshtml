@@ -27,6 +27,16 @@
         <a class="dismiss">🗙</a>
     </div>
 
+    <script>
+      window.WriteCookies = (args) => {
+        document.cookie = args;
+      }
+
+      window.ReadCookies = (args) => {
+        console.log(document.cookie);
+        return document.cookie;
+      }
+    </script>
     <script src="_framework/blazor.server.js"></script>
 </body>
 </html>

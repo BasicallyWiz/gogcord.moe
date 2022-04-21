@@ -9,17 +9,42 @@ main[b-aq8k0vjnas] {
     flex: 1;
 }
 
-.sidebar[b-aq8k0vjnas] {
+.gog-sidebar[b-aq8k0vjnas] {
     background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
 }
 
 .top-row[b-aq8k0vjnas] {
-    background-color: #f7f7f7;
+    background-color: #f7f7f6;
     border-bottom: 1px solid #d6d5d5;
     justify-content: flex-end;
     height: 3.5rem;
     display: flex;
     align-items: center;
+}
+
+.top-row .user-info[b-aq8k0vjnas] {
+  position: relative;
+  display: flex;
+  height: 100%;
+}
+
+  .top-row .user-info:hover[b-aq8k0vjnas] {
+    background-color: #e2e3e5;
+  }
+
+.top-row .user-info .avatar[b-aq8k0vjnas] {
+  height: 90%;
+  position: relative;
+  margin: auto 8px auto 8px;
+  aspect-ratio: 1/1;
+  border-radius: 8px;
+}
+
+.top-row .user-info .username[b-aq8k0vjnas] {
+  font-size: 25px;
+  height: fit-content;
+  width: fit-content;
+  margin: auto 8px auto 0px;
 }
 
     .top-row[b-aq8k0vjnas]  a, .top-row .btn-link[b-aq8k0vjnas] {
@@ -51,7 +76,7 @@ main[b-aq8k0vjnas] {
         flex-direction: row;
     }
 
-    .sidebar[b-aq8k0vjnas] {
+    .gog-sidebar[b-aq8k0vjnas] {
         width: 250px;
         height: 100vh;
         position: sticky;
@@ -80,7 +105,8 @@ main[b-aq8k0vjnas] {
 }
 
 .navbar-brand[b-s2imnzam5u] {
-    font-size: 1.1rem;
+  padding-top: 0px;
+  font-size: 2rem;
 }
 
 .oi[b-s2imnzam5u] {

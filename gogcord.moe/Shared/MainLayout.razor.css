@@ -8,17 +8,42 @@ main {
     flex: 1;
 }
 
-.sidebar {
+.gog-sidebar {
     background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
 }
 
 .top-row {
-    background-color: #f7f7f7;
+    background-color: #f7f7f6;
     border-bottom: 1px solid #d6d5d5;
     justify-content: flex-end;
     height: 3.5rem;
     display: flex;
     align-items: center;
+}
+
+.top-row .user-info {
+  position: relative;
+  display: flex;
+  height: 100%;
+}
+
+  .top-row .user-info:hover {
+    background-color: #e2e3e5;
+  }
+
+.top-row .user-info .avatar {
+  height: 90%;
+  position: relative;
+  margin: auto 8px auto 8px;
+  aspect-ratio: 1/1;
+  border-radius: 8px;
+}
+
+.top-row .user-info .username {
+  font-size: 25px;
+  height: fit-content;
+  width: fit-content;
+  margin: auto 8px auto 0px;
 }
 
     .top-row ::deep a, .top-row .btn-link {
@@ -50,7 +75,7 @@ main {
         flex-direction: row;
     }
 
-    .sidebar {
+    .gog-sidebar {
         width: 250px;
         height: 100vh;
         position: sticky;

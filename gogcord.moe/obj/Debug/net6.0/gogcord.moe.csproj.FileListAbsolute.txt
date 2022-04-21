@@ -25,3 +25,11 @@ C:\Repos\gogcord.moe\gogcord.moe\obj\Debug\net6.0\refint\gogcord.moe.dll
 C:\Repos\gogcord.moe\gogcord.moe\obj\Debug\net6.0\gogcord.moe.pdb
 C:\Repos\gogcord.moe\gogcord.moe\obj\Debug\net6.0\gogcord.moe.genruntimeconfig.cache
 C:\Repos\gogcord.moe\gogcord.moe\obj\Debug\net6.0\ref\gogcord.moe.dll
+C:\Repos\gogcord.moe\gogcord.moe\bin\Debug\net6.0\System.Messaging.dll
+C:\Repos\gogcord.moe\gogcord.moe\bin\Debug\net6.0\System.Configuration.Install.dll
+C:\Repos\gogcord.moe\gogcord.moe\bin\Debug\net6.0\System.Windows.Forms.dll
+C:\Repos\gogcord.moe\gogcord.moe\bin\Debug\net6.0\System.DirectoryServices.dll
+C:\Repos\gogcord.moe\gogcord.moe\bin\Debug\net6.0\System.Runtime.Serialization.Formatters.Soap.dll
+C:\Repos\gogcord.moe\gogcord.moe\bin\Debug\net6.0\Accessibility.dll
+C:\Repos\gogcord.moe\gogcord.moe\bin\Debug\net6.0\System.Deployment.dll
+C:\Repos\gogcord.moe\gogcord.moe\obj\Debug\net6.0\gogcord.moe.csproj.CopyComplete
