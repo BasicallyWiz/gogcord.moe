@@ -8,12 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="System.Messaging">
-      <HintPath>..\..\..\Windows\Microsoft.NET\Framework64\v2.0.50727\System.Messaging.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="wwwroot\js\" />
   </ItemGroup>
 

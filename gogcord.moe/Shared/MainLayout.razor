@@ -1,6 +1,5 @@
 ﻿@inherits LayoutComponentBase
 @inject IJSRuntime JS;
-@using System.Messaging;
 @using gogcord.moe.Data;
 
 <PageTitle>gogcord.moe</PageTitle>
@@ -14,7 +13,7 @@
 
     <main>
         <div class="top-row px-4">
-            <div class="user-info" @onclick="StartLogin">
+            <div class="user-info" @onclick="ExpandUserCard">
               <img class="avatar" src="@AvatarURL"/>
               <p class="username">@Username</p>
             </div>
@@ -27,6 +26,7 @@
 </div>
 
 @code {
+  public bool IsLoggedIn = false;
   public string Username = "Not Logged in.";
   public string AvatarURL = "https://cdn.discordapp.com/avatars/324588568951390220/a_31658556a19ee5eee3d521f4c18f8210.gif";
 
@@ -35,8 +35,6 @@
   public async Task StartLogin()
   {
     ClientQueue.Enqueue(new ClientQueueObject("CreateCookie", new List<string> { "cool_cookie", "I am a pretty cool cookie!" }));
-
-    //JS.InvokeVoidAsync("cookies.CreateCookie", new string[] { "Dick abll" } );
   }
 
   protected override async Task OnAfterRenderAsync(bool firstRender)
