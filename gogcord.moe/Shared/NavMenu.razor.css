@@ -12,11 +12,19 @@
   font-size: 2rem;
 }
 
+.flex-column {
+  height: 90%;
+}
+
 .oi {
     width: 2rem;
     font-size: 1.1rem;
     vertical-align: text-top;
     top: -2px;
+}
+
+.collapse {
+  width: 80px;
 }
 
 .nav-item {
@@ -54,10 +62,10 @@
 @media (min-width: 641px) {
     .navbar-toggler {
         display: none;
+        pointer-events: none;
     }
 
     .collapse {
-        /* Never collapse the sidebar for wide screens */
         display: block;
     }
 }

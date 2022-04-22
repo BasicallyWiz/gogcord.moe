@@ -9,7 +9,7 @@
 
 <div class="page">
     <div class="gog-sidebar">
-        <NavMenu />
+        <NavMenu/>
     </div>
 
     <main>
@@ -35,7 +35,6 @@
   public async Task StartLogin()
   {
     ClientQueue.Enqueue(new ClientQueueObject("CreateCookie", new List<string> { "cool_cookie", "I am a pretty cool cookie!" }));
-    Console.WriteLine("Poop");
 
     //JS.InvokeVoidAsync("cookies.CreateCookie", new string[] { "Dick abll" } );
   }

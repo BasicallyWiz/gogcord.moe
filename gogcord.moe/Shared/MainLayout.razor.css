@@ -76,7 +76,7 @@ main {
     }
 
     .gog-sidebar {
-        width: 250px;
+        width: fit-content;
         height: 100vh;
         position: sticky;
         top: 0;
