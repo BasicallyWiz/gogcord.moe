@@ -1,0 +1,16 @@
+﻿<h3 class="modal-header">You're logging in with discord.</h3>
+<p class="modal-description">By continuing, you understand that the only data I collect is your discord ID, and some data created while on this site.
+  <br />Data collected on this site may include data from: created posts, system errors you may cause, games you play, and any other data you share with me.
+  <br />I will always notify you when you reach something new that collects any data, and what data is collected.
+</p>
+<a class="modal-button">
+  Continue
+</a>
+
+@code {
+  [Parameter]
+  public string HeaderText { get; set; }
+
+  [Parameter]
+  public string ContinueLink { get; set; }
+}

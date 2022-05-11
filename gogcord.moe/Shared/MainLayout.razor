@@ -1,6 +1,9 @@
 ﻿@inherits LayoutComponentBase
+@inject NavigationManager NavManager;
 @inject IJSRuntime JS;
+@inject IHttpClientFactory ClientFactory;
 @using gogcord.moe.Data;
+
 
 <PageTitle>gogcord.moe</PageTitle>
 
@@ -13,9 +16,12 @@
 
     <main>
         <div class="top-row px-4">
-            <div class="user-info" @onclick="ExpandUserCard">
-              <img class="avatar" src="@AvatarURL"/>
-              <p class="username">@Username</p>
+            <div class="user-info">
+              <img class="avatar" id="profile_avatar" src="@AvatarURL" @onclick="ToggleUserCard"/>
+              <p class="username" id="profile_username" @onclick="ToggleUserCard">@Username</p>
+              <div class="profile-dropdown @UserCardHidden">
+              @if (IsLoggedIn) {<AccountDropdown/>} else {<NotLoggedInProfileDropdown/>}>
+              </div>
             </div>
         </div>
 
@@ -26,9 +32,6 @@
 </div>
 
 @code {
-  public bool IsLoggedIn = false;
-  public string Username = "Not Logged in.";
-  public string AvatarURL = "https://cdn.discordapp.com/avatars/324588568951390220/a_31658556a19ee5eee3d521f4c18f8210.gif";
 
   Queue<ClientQueueObject> ClientQueue = new();
 
@@ -39,6 +42,10 @@
 
   protected override async Task OnAfterRenderAsync(bool firstRender)
   {
+    if (firstRender) {
+      //TestForTokenCookie(firstRender);
+    }
+
     while (ClientQueue.Count > 0)
     {
       ClientQueueObject obj = ClientQueue.Dequeue();
@@ -58,10 +65,9 @@
     string[] allCookies = await GetAllCookies();
     foreach (string cookie in await GetAllCookies())
     {
-      Console.WriteLine(cookie);
-      if (cookie.Split("=")[0] == CookieName)
+      if (cookie.Split("=")[0].Trim() == CookieName)
       {
-        return cookie;
+        return cookie.Split("=")[1].Trim();
       }
     }
     return "ERROR_NO_COOKIE_MATCH";

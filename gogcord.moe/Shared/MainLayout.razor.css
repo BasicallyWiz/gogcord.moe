@@ -21,14 +21,12 @@ main {
     align-items: center;
 }
 
-.top-row .user-info {
-  position: relative;
-  display: flex;
-  height: 100%;
-}
-
-  .top-row .user-info:hover {
-    background-color: #e2e3e5;
+  .top-row .user-info {
+    position: relative;
+    display: flex; /* Change this to flex once a need for profiles arises */
+    /* pointer-events: none; remove this once above condition is met*/
+    height: 100%;
+    cursor: pointer;
   }
 
 .top-row .user-info .avatar {
@@ -44,6 +42,26 @@ main {
   height: fit-content;
   width: fit-content;
   margin: auto 8px auto 0px;
+}
+
+.top-row .user-info .profile-dropdown {
+  display: flex;
+  position: absolute;
+  top: 56px;
+  width: 100%;
+  background-color: #f7f7f6;
+  cursor: default;
+  border-radius: 0px 0px 10px 10px;
+  border: solid 1px #d6d5d5;
+  border-top: none;
+  transition-duration: 0.3s;
+  animation-duration: 0.3s;
+}
+
+.card-hidden {
+  height: 0px !important;
+  display: none !important;
+  pointer-events: none;
 }
 
     .top-row ::deep a, .top-row .btn-link {

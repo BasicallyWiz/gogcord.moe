@@ -1,0 +1,18 @@
+﻿.stuff-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.stuff-image {
+  margin: 0px auto 0px auto;
+  height: 250px;
+}
+
+.stuff-title {
+  margin: 5px auto 0px auto;
+}
+
+.stuff-description {
+  font-size: 20px;
+  margin: 0px auto 0px auto;
+}

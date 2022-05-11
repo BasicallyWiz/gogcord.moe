@@ -5,6 +5,8 @@ VisualStudioVersion = 17.1.32407.343
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "gogcord.moe", "gogcord.moe\gogcord.moe.csproj", "{588CE8D3-9B20-47DF-B667-2CD0A49EBC0A}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscordOAuth2Helper", "..\Wiz' Discord OAuth2 Helper\DiscordOAuth2Helper\DiscordOAuth2Helper.csproj", "{45780B09-4741-4798-A1C4-14CA2548629D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{588CE8D3-9B20-47DF-B667-2CD0A49EBC0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{588CE8D3-9B20-47DF-B667-2CD0A49EBC0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{588CE8D3-9B20-47DF-B667-2CD0A49EBC0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45780B09-4741-4798-A1C4-14CA2548629D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45780B09-4741-4798-A1C4-14CA2548629D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45780B09-4741-4798-A1C4-14CA2548629D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45780B09-4741-4798-A1C4-14CA2548629D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

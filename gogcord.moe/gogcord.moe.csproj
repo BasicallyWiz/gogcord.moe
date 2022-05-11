@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -8,7 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\js\" />
+    <None Remove="Pages\Stuff.razor.css" />
+    <None Remove="Shared\NotLoggedInProfileDropdown.razor.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Pages\Stuff.razor.css" />
+    <Content Include="Shared\NotLoggedInProfileDropdown.razor.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Wiz' Discord OAuth2 Helper\DiscordOAuth2Helper\DiscordOAuth2Helper.csproj" />
   </ItemGroup>
 
 </Project>
