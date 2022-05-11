@@ -1,5 +1,4 @@
 ﻿using gogcord.moe.Data;
-using gogcord.moe.Data.Discord;
 using gogcord.moe.Shared;
 
 using System.IO;
@@ -43,21 +42,17 @@ namespace gogcord.moe.Pages
     {
       if (GetCodeFromUri() != null)
       {
-        /*
-        response = await client.GetAsync("https://discord.com/api/v8/oauth2/@me");
-
-        Console.WriteLine(await response.Content.ReadAsStringAsync());
-
-        DiscordThing thing = JsonSerializer.Deserialize<DiscordThing>(await response.Content.ReadAsStringAsync());
-
-        JS.InvokeVoidAsync("window.ClientProfile.setClientProfile", thing.user, GetCodeFromUri());
-        */
-
+        
+        //JS.InvokeVoidAsync("window.ClientProfile.setClientProfile", thing.user, GetCodeFromUri());
+        
         OAuth2Helper Helper = new("962874982663331870", "FjmPMQtAdgiMsfHalBLTNFyG7f06Q665");
 
         CallbackToken token = await Helper.GetAccessToken(GrantType.AuthorizationCode, GetCodeFromUri(), NavManager.BaseUri + "Profile/") as CallbackToken;
         await Helper.SetBearerHeader(token);
-        Console.WriteLine(await Helper.GetCurrentUser());
+
+        CallbackUser callbackUser = await Helper.GetCurrentUser();
+
+        JS.InvokeVoidAsync("ClientUser.setUser", callbackUser.User);
       }
     }
   }

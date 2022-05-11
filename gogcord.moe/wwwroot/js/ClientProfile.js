@@ -1,20 +1,19 @@
-﻿window.ClientProfile = {
+﻿window.ClientUser = {
 
   // Methods
-  setProfileDisplay: function (args) {
+  setUserDisplay: function (user) {
     console.log(args);
-    document.getElementById("profile_avatar").src = `https://cdn.discordapp.com/avatars/${args.id}/${args.avatar}`;
-    document.getElementById("profile_username").innerHTML = args.username;
+    document.getElementById("profile_avatar").src = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}`;
+    document.getElementById("profile_username").innerHTML = user.username;
   },
 
-  setClientProfile: function (args, access_token) {
+  setUser: function (user) {
 
-    console.log(access_token);
-    document.cookie = `discord_access_code = ${access_token}; path=/`;
-    this.setProfileDisplay(args);
+    DotNet.invokeMethodAsync("gogcord.moe", "setCurrentUser");
+    this.setUserDisplay(user);
   },
 
-  removeClientProfile: function (args) {
+  removeUser: function (args) {
 
   }
 }

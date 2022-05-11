@@ -17,10 +17,10 @@
     <main>
         <div class="top-row px-4">
             <div class="user-info">
-              <img class="avatar" id="profile_avatar" src="@AvatarURL" @onclick="ToggleUserCard"/>
-              <p class="username" id="profile_username" @onclick="ToggleUserCard">@Username</p>
+              <img class="avatar" id="profile_avatar" src="https://cdn.discordapp.com/avatars/$@activeUser.Id/@activeUser.Avatar" @onclick="ToggleUserCard"/>
+              <p class="username" id="profile_username" @onclick="ToggleUserCard">@activeUser.Username</p>
               <div class="profile-dropdown @UserCardHidden">
-              @if (IsLoggedIn) {<AccountDropdown/>} else {<NotLoggedInProfileDropdown/>}>
+              @if (activeUser.Username != "Not logged in") {<AccountDropdown/>} else {<NotLoggedInProfileDropdown/>}>
               </div>
             </div>
         </div>
@@ -30,46 +30,3 @@
         </article>
     </main>
 </div>
-
-@code {
-
-  Queue<ClientQueueObject> ClientQueue = new();
-
-  public async Task StartLogin()
-  {
-    ClientQueue.Enqueue(new ClientQueueObject("CreateCookie", new List<string> { "cool_cookie", "I am a pretty cool cookie!" }));
-  }
-
-  protected override async Task OnAfterRenderAsync(bool firstRender)
-  {
-    if (firstRender) {
-      //TestForTokenCookie(firstRender);
-    }
-
-    while (ClientQueue.Count > 0)
-    {
-      ClientQueueObject obj = ClientQueue.Dequeue();
-
-      Username = await GetCookie(obj.Args[0]);
-    }
-  }
-
-  async Task<string[]> GetAllCookies()
-  {
-    string cookiesBuffer = await JS.InvokeAsync<string>("ReadCookies");
-    return cookiesBuffer.Split("; ");
-  }
-
-  async Task<string> GetCookie(string CookieName)
-  {
-    string[] allCookies = await GetAllCookies();
-    foreach (string cookie in await GetAllCookies())
-    {
-      if (cookie.Split("=")[0].Trim() == CookieName)
-      {
-        return cookie.Split("=")[1].Trim();
-      }
-    }
-    return "ERROR_NO_COOKIE_MATCH";
-  }
-}

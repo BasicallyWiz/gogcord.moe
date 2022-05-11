@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Wiz' Discord OAuth2 Helper\DiscordOAuth2Helper\DiscordOAuth2Helper.csproj" />
+    <ProjectReference Include="..\DiscordOAuth2Helper\DiscordOAuth2Helper.csproj" />
   </ItemGroup>
 
 </Project>
