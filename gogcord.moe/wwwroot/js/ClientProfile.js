@@ -1,19 +1,38 @@
 ﻿window.ClientUser = {
 
-  // Methods
+  // Profile & User
   setUserDisplay: function (user) {
-    console.log(args);
+    console.log(user);
     document.getElementById("profile_avatar").src = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}`;
     document.getElementById("profile_username").innerHTML = user.username;
   },
 
-  setUser: function (user) {
+  setUser: function (callbackUser) {
 
-    DotNet.invokeMethodAsync("gogcord.moe", "setCurrentUser");
-    this.setUserDisplay(user);
+    document.cookie = `user = ${callbackUser.user.id}, ${callbackUser.user.username}, ${callbackUser.user.avatar}; path=/`
+    this.setUserDisplay(callbackUser.user);
   },
 
-  removeUser: function (args) {
+  getUser: function (args) {
+    var cookies = document.cookie.split(";");
+    for (var i = 0; i < cookies.length; i++) {
+      if (cookies[i].startsWith("user=")) {
+        return cookies[i].replace("user=", "");
+      }
+    }
+  },
 
+  // Token
+  setToken: function (token) {
+    document.cookie = `access_token = ${token}; path=/`
+  },
+
+  getToken: function () {
+    var cookies = document.cookie.split(";");
+    for (let i = 0; i < cookies.length; i++) {
+      if (cookies[i].startsWith("access_token=")) {
+        return cookies[i].replace("access_token=", "");
+      }
+    }
   }
 }

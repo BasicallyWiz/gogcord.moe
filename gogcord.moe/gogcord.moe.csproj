@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="discord.secret" />
     <None Remove="Pages\Stuff.razor.css" />
     <None Remove="Shared\NotLoggedInProfileDropdown.razor.css" />
   </ItemGroup>

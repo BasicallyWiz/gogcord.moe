@@ -1,7 +1,6 @@
 ﻿using gogcord.moe.Data;
 using gogcord.moe.Shared;
 
-using System.IO;
 using System.Text.Json;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
@@ -19,7 +18,7 @@ namespace gogcord.moe.Pages
     [Inject]
     NavigationManager NavManager { get; set; }
 
-    [Inject]
+    [Inject] 
     IJSRuntime JS { get; set; }
 
 
@@ -45,14 +44,14 @@ namespace gogcord.moe.Pages
         
         //JS.InvokeVoidAsync("window.ClientProfile.setClientProfile", thing.user, GetCodeFromUri());
         
-        OAuth2Helper Helper = new("962874982663331870", "FjmPMQtAdgiMsfHalBLTNFyG7f06Q665");
+        OAuth2Helper Helper = new(DiscordApplicationData.Id, DiscordApplicationData.GetClientSecret());
 
         CallbackToken token = await Helper.GetAccessToken(GrantType.AuthorizationCode, GetCodeFromUri(), NavManager.BaseUri + "Profile/") as CallbackToken;
         await Helper.SetBearerHeader(token);
 
         CallbackUser callbackUser = await Helper.GetCurrentUser();
 
-        JS.InvokeVoidAsync("ClientUser.setUser", callbackUser.User);
+        JS.InvokeVoidAsync("ClientUser.setUser", callbackUser);
       }
     }
   }

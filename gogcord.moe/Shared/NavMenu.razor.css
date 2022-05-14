@@ -9,6 +9,7 @@
 
 .navbar-brand {
   padding-top: 0px;
+  width: fit-content !important;
   font-size: 2rem;
 }
 
