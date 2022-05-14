@@ -13,7 +13,7 @@ namespace gogcord.moe.Shared
     [Inject]
     IJSRuntime JS { get; set; }
 
-    User activeUser = new User("", "Not logged in", "", null, "", 0);
+    User activeUser = new("", "Not logged in", "", null, "", 0);
 
     private bool UserCardExpanded = false;
 
@@ -30,7 +30,10 @@ namespace gogcord.moe.Shared
     {
       try
       {
-        OAuth2Helper Helper = new(DiscordApplicationData.Id, File.ReadAllText("discord.secret"));
+        /*
+         * TODO: Check for refresh_token cookie and collect new access_token from it's callback.
+         * Old token will need to be replaced
+        */
       }
       catch (Exception ex) { DebugOutput = $"{DateTime.Now} {ex.Message}"; }
     }

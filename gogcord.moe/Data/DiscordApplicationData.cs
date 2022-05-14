@@ -8,7 +8,8 @@ namespace gogcord.moe.Data
 
     public static string GetClientSecret()
     {
-      return File.ReadAllText("./discord.secret");
+      if (File.Exists("discord.secret")) return File.ReadAllText("discord.secret");
+      else return Directory.GetCurrentDirectory() + "/discord.secret does not exist";
     }
   }
 }

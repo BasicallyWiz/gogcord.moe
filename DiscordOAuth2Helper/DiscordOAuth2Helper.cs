@@ -4,7 +4,7 @@ namespace DiscordOAuth2Helper
 {
   public class OAuth2Helper
   {
-    HttpClient Client { get; set; }
+    static HttpClient Client { get; set; }
 
     public string ClientId { get; private set; }
     public string ClientSecret { get; private set; }
@@ -17,6 +17,22 @@ namespace DiscordOAuth2Helper
       this.ClientSecret = ClientSecret;
     }
 
+    //  Modify client
+    public static Task SetBearerHeader(CallbackToken callbackToken)
+    {
+      Client.DefaultRequestHeaders.Add("Authorization", $"Bearer {callbackToken.Access_Token}");
+
+      return Task.CompletedTask;
+    }
+
+    //  Test client
+    public bool DoesClientExist()
+    {
+      if (ClientId != null) return true;
+      else return false;
+    }
+
+    //  Use client
     public async Task<ICallbackToken> GetAccessToken(string GrantType, string AuthorizationCode, string RedirectUri)
     {
       var form = new Dictionary<string, string>
@@ -32,15 +48,7 @@ namespace DiscordOAuth2Helper
 
       return JsonSerializer.Deserialize<CallbackToken>(await response.Content.ReadAsStringAsync());
     }
-
-    public Task SetBearerHeader(CallbackToken callbackToken)
-    {
-      Client.DefaultRequestHeaders.Add("Authorization", $"Bearer {callbackToken.Access_Token}");
-
-      return Task.CompletedTask;
-    }
-
-    public async Task<CallbackUser> GetCurrentUser()
+    public async Task<ICallbackUser> GetCurrentUser()
     {
       return JsonSerializer.Deserialize<CallbackUser>(await Client.GetStringAsync("https://discord.com/api/v8/oauth2/@me"));
     }

@@ -11,10 +11,6 @@ namespace gogcord.moe.Pages
 {
   public partial class Profile
   {
-
-    string? textStuff;
-
-
     [Inject]
     NavigationManager NavManager { get; set; }
 
@@ -25,7 +21,7 @@ namespace gogcord.moe.Pages
     string? GetCodeFromUri()
     {
       string[] baseRemovedUri = NavManager.Uri.Split("?");
-      if (baseRemovedUri.Count() <= 1) return null;
+      if (baseRemovedUri.Length <= 1) return null;
 
       foreach (string urlParam in baseRemovedUri[1].Split(";"))
       {
@@ -47,11 +43,11 @@ namespace gogcord.moe.Pages
         OAuth2Helper Helper = new(DiscordApplicationData.Id, DiscordApplicationData.GetClientSecret());
 
         CallbackToken token = await Helper.GetAccessToken(GrantType.AuthorizationCode, GetCodeFromUri(), NavManager.BaseUri + "Profile/") as CallbackToken;
-        await Helper.SetBearerHeader(token);
+        await OAuth2Helper.SetBearerHeader(token);
 
-        CallbackUser callbackUser = await Helper.GetCurrentUser();
+        CallbackUser callbackUser = (CallbackUser)await Helper.GetCurrentUser();
 
-        JS.InvokeVoidAsync("ClientUser.setUser", callbackUser);
+        await JS.InvokeVoidAsync("ClientUser.setUser", callbackUser);
       }
     }
   }
