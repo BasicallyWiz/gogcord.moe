@@ -24,7 +24,7 @@
 
   // Token
   setToken: function (token) {
-    document.cookie = `access_token = ${token}; path=/`
+    document.cookie = `access_token = ${token.access_token}, ${token.expires_in}, ${token.refresh_token}, ${token.scope}, ${token.token_type}; path=/`
   },
 
   getToken: function () {

@@ -37,9 +37,6 @@ namespace gogcord.moe.Pages
     {
       if (GetCodeFromUri() != null)
       {
-        
-        //JS.InvokeVoidAsync("window.ClientProfile.setClientProfile", thing.user, GetCodeFromUri());
-        
         OAuth2Helper Helper = new(DiscordApplicationData.Id, DiscordApplicationData.GetClientSecret());
 
         CallbackToken token = await Helper.GetAccessToken(GrantType.AuthorizationCode, GetCodeFromUri(), NavManager.BaseUri + "Profile/") as CallbackToken;
@@ -48,6 +45,7 @@ namespace gogcord.moe.Pages
         CallbackUser callbackUser = (CallbackUser)await Helper.GetCurrentUser();
 
         await JS.InvokeVoidAsync("ClientUser.setUser", callbackUser);
+        await JS.InvokeVoidAsync("ClientUser.setToken", token);
       }
     }
   }
