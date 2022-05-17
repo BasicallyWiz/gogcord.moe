@@ -11,7 +11,7 @@ namespace gogcord.moe.Shared
   public partial class MainLayout
   {
     [Inject]
-    IJSRuntime JS { get; set; }
+    IJSRuntime? JS { get; set; }
 
     User activeUser = new("", "Not logged in", "", null, "", 0);
 
@@ -58,7 +58,6 @@ namespace gogcord.moe.Shared
         }
 
         await JS.InvokeVoidAsync("ClientUser.setUser", user);
-        //  TODO: If first GetCurrentUser attempt fails, Try again with refresh token. If that fails, a manual sign-in may be required.
       }
     }
   }

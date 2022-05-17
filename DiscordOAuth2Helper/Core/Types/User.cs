@@ -22,7 +22,7 @@ namespace DiscordOAuth2Helper
     [JsonPropertyName("public_flags")]
     public int Public_Flags { get; }
 
-    public User(string id, string username, string avatar, string avatar_decoration, string discriminator, int public_flags)
+    public User(string id, string username, string avatar, string? avatar_decoration, string discriminator, int public_flags)
     {
       this.Id = id;
       this.Username = username;
