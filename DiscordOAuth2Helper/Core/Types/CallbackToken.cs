@@ -20,7 +20,6 @@ namespace DiscordOAuth2Helper
     [JsonPropertyName("token_type")]
     public string Token_Type { get; set; }
 
-
     public CallbackToken(string access_token, int expires_in, string refresh_token, string scope, string token_type)
     {
       this.Access_Token = access_token;

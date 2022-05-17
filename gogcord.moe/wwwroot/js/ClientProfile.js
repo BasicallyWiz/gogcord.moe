@@ -9,7 +9,7 @@
 
   setUser: function (callbackUser) {
 
-    document.cookie = `user = ${callbackUser.user.id}, ${callbackUser.user.username}, ${callbackUser.user.avatar}; path=/`
+    document.cookie = `user = ${callbackUser.user.id}, ${callbackUser.user.username}, ${callbackUser.user.avatar}; path=/; secure= true;`
     this.setUserDisplay(callbackUser.user);
   },
 
@@ -24,14 +24,27 @@
 
   // Token
   setToken: function (token) {
-    document.cookie = `access_token = ${token.access_token}, ${token.expires_in}, ${token.refresh_token}, ${token.scope}, ${token.token_type}; path=/`
+    document.cookie = `access_token = ${token.access_token}, ${token.expires_in}, ${token.refresh_token}, ${token.scope}, ${token.token_type}; path=/; secure= true;`
   },
-
   getToken: function () {
-    var cookies = document.cookie.split(";");
+    var cookies = document.cookie.split("; ");
     for (let i = 0; i < cookies.length; i++) {
+      console.log(cookies[i]);
       if (cookies[i].startsWith("access_token=")) {
         return cookies[i].replace("access_token=", "");
+      }
+    }
+  },
+
+  storeOldAuth: function (AuthCode) {
+    document.cookie = `old_auth= ${AuthCode}; secure= true;`
+  },
+  getOldAuth: function () {
+    var cookies = document.cookie.split("; ");
+    for (let i = 0; i < cookies.length; i++) {
+      console.log(cookies[i]);
+      if (cookies[i].startsWith("old_auth=")) {
+        return cookies[i].replace("old_auth=", "");
       }
     }
   }

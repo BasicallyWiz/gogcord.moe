@@ -24,18 +24,42 @@ namespace gogcord.moe.Shared
     private void ToggleUserCard() { UserCardExpanded = !UserCardExpanded; }
     private void HideUserCard() { UserCardExpanded = false; }
 
-
+    readonly OAuth2Helper helper = new(DiscordApplicationData.Id, DiscordApplicationData.GetClientSecret());
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-      try
+      if (!NavManager.Uri.Contains("Profile/") && firstRender || NavManager.Uri.Contains("Profile") && !NavManager.Uri.Contains("code=") && firstRender)
       {
-        /*
-         * TODO: Check for refresh_token cookie and collect new access_token from it's callback.
-         * Old token will need to be replaced
-        */
+        string clientTokenCallback = await JS.InvokeAsync<string>("ClientUser.getToken");
+
+        if (clientTokenCallback == null) return;
+
+        string[] clientTokenItems = clientTokenCallback.Split(", ");
+        CallbackToken token = new(clientTokenItems[0], int.Parse(clientTokenItems[1]), clientTokenItems[2], clientTokenItems[3], clientTokenItems[4]);
+
+
+        //  Old Token
+
+        await helper.SetBearerHeader(token);
+        CallbackUser user = await helper.GetCurrentUser();
+
+        Console.WriteLine("- - Using OLD token: " + user.User.Username);
+
+        // New token
+        if (user == null)
+        {
+          token = (CallbackToken) await helper.GetRefreshedToken(token);
+          await helper.SetBearerHeader(token);
+
+          await JS.InvokeVoidAsync("ClientUser.setToken", token);
+
+          user = await helper.GetCurrentUser();
+          Console.WriteLine("- - Using NEW token: " + user.User.Username);
+        }
+
+        await JS.InvokeVoidAsync("ClientUser.setUser", user);
+        //  TODO: If first GetCurrentUser attempt fails, Try again with refresh token. If that fails, a manual sign-in may be required.
       }
-      catch (Exception ex) { DebugOutput = $"{DateTime.Now} {ex.Message}"; }
     }
   }
 }

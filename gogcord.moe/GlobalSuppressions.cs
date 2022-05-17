@@ -7,3 +7,4 @@ using System.Diagnostics.CodeAnalysis;
 
 [assembly: SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>", Scope = "member", Target = "~M:gogcord.moe.Shared.MainLayout.HideUserCard")]
 [assembly: SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>", Scope = "member", Target = "~P:gogcord.moe.Shared.MainLayout.JS")]
+[assembly: SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>", Scope = "member", Target = "~F:gogcord.moe.Shared.MainLayout.activeUser")]

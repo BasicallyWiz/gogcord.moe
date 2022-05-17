@@ -14,7 +14,7 @@ namespace gogcord.moe.Pages
     [Inject]
     NavigationManager NavManager { get; set; }
 
-    [Inject] 
+    [Inject]
     IJSRuntime JS { get; set; }
 
 
@@ -35,18 +35,50 @@ namespace gogcord.moe.Pages
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-      if (GetCodeFromUri() != null)
+      if (GetCodeFromUri() != null && GetCodeFromUri() != await JS.InvokeAsync<string>("ClientUser.getOldAuth"))
       {
         OAuth2Helper Helper = new(DiscordApplicationData.Id, DiscordApplicationData.GetClientSecret());
 
-        CallbackToken token = await Helper.GetAccessToken(GrantType.AuthorizationCode, GetCodeFromUri(), NavManager.BaseUri + "Profile/") as CallbackToken;
-        await OAuth2Helper.SetBearerHeader(token);
+        CallbackToken token = await Helper.GetAccessToken(GetCodeFromUri(), NavManager.BaseUri + "Profile/") as CallbackToken;
+        await Helper.SetBearerHeader(token);
 
         CallbackUser callbackUser = (CallbackUser)await Helper.GetCurrentUser();
 
         await JS.InvokeVoidAsync("ClientUser.setUser", callbackUser);
         await JS.InvokeVoidAsync("ClientUser.setToken", token);
+        await JS.InvokeVoidAsync("ClientUser.storeOldAuth", GetCodeFromUri());
+      }
+      else if (GetCodeFromUri() != null && GetCodeFromUri() == await JS.InvokeAsync<string>("ClientUser.getOldAuth"))
+      {
+          string clientTokenCallback = await JS.InvokeAsync<string>("ClientUser.getToken");
+
+          if (clientTokenCallback == null) return;
+
+          string[] clientTokenItems = clientTokenCallback.Split(", ");
+          CallbackToken token = new(clientTokenItems[0], int.Parse(clientTokenItems[1]), clientTokenItems[2], clientTokenItems[3], clientTokenItems[4]);
+
+          OAuth2Helper Helper = new(DiscordApplicationData.Id, DiscordApplicationData.GetClientSecret());
+
+          //  Old Token
+          await Helper.SetBearerHeader(token);
+          CallbackUser user = await Helper.GetCurrentUser();
+
+          Console.WriteLine("- - Using OLD token: " + user.User.Username);
+
+          // New token
+          if (user == null)
+          {
+            token = (CallbackToken)await Helper.GetRefreshedToken(token);
+            await Helper.SetBearerHeader(token);
+
+            await JS.InvokeVoidAsync("ClientUser.setToken", token);
+
+            user = await Helper.GetCurrentUser();
+            Console.WriteLine("- - Using NEW token: " + user.User.Username);
+          }
+
+          await JS.InvokeVoidAsync("ClientUser.setUser", user);
+        }
       }
     }
   }
-}
