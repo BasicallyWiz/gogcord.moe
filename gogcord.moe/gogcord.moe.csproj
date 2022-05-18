@@ -10,11 +10,13 @@
   <ItemGroup>
     <None Remove="discord.secret" />
     <None Remove="Pages\Stuff.razor.css" />
+    <None Remove="Shared\AccountDropdown.razor.css" />
     <None Remove="Shared\NotLoggedInProfileDropdown.razor.css" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Pages\Stuff.razor.css" />
+    <Content Include="Shared\AccountDropdown.razor.css" />
     <Content Include="Shared\NotLoggedInProfileDropdown.razor.css" />
   </ItemGroup>
 

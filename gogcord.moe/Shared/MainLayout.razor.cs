@@ -42,22 +42,14 @@ namespace gogcord.moe.Shared
 
         await helper.SetBearerHeader(token);
         CallbackUser user = await helper.GetCurrentUser();
+        activeUser = user.User;
 
-        Console.WriteLine("- - Using OLD token: " + user.User.Username);
+        //Console.WriteLine("- - Using OLD token: " + user.User.Username);
 
-        // New token
-        if (user == null)
-        {
-          token = (CallbackToken) await helper.GetRefreshedToken(token);
-          await helper.SetBearerHeader(token);
 
-          await JS.InvokeVoidAsync("ClientUser.setToken", token);
+        if (user.User != null) await JS.InvokeVoidAsync("ClientUser.setUser", user);
 
-          user = await helper.GetCurrentUser();
-          Console.WriteLine("- - Using NEW token: " + user.User.Username);
-        }
-
-        await JS.InvokeVoidAsync("ClientUser.setUser", user);
+        //  TODO: Fix recently found errors with user being null
       }
     }
   }

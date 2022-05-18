@@ -1,0 +1,20 @@
+﻿.dropdown-button {
+  position: relative;
+  margin: 8px 0px 8px 0px !important;
+  padding: 3px 0px 3px 0px;
+  width: 100%;
+  color: black;
+  font-size: 20px;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+  .dropdown-button:hover {
+    background-color: rgba(163, 161, 172, 0.1);
+  }
+
+.warn-modal {
+  position: absolute;
+  z-index: 100;
+}

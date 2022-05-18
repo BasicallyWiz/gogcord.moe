@@ -12,7 +12,6 @@
     document.cookie = `user = ${callbackUser.user.id}, ${callbackUser.user.username}, ${callbackUser.user.avatar}; path=/; secure= true;`
     this.setUserDisplay(callbackUser.user);
   },
-
   getUser: function (args) {
     var cookies = document.cookie.split(";");
     for (var i = 0; i < cookies.length; i++) {
@@ -47,5 +46,5 @@
         return cookies[i].replace("old_auth=", "");
       }
     }
-  }
+  },
 }
