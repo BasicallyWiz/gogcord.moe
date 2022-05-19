@@ -50,34 +50,24 @@ namespace gogcord.moe.Pages
       }
       else if (GetCodeFromUri() != null && GetCodeFromUri() == await JS.InvokeAsync<string>("ClientUser.getOldAuth"))
       {
-          string clientTokenCallback = await JS.InvokeAsync<string>("ClientUser.getToken");
+        OAuth2Helper Helper = new(DiscordApplicationData.Id, DiscordApplicationData.GetClientSecret());
 
-          if (clientTokenCallback == null) return;
+        string clientTokenCallback = await JS.InvokeAsync<string>("ClientUser.getToken");
 
-          string[] clientTokenItems = clientTokenCallback.Split(", ");
-          CallbackToken token = new(clientTokenItems[0], int.Parse(clientTokenItems[1]), clientTokenItems[2], clientTokenItems[3], clientTokenItems[4]);
+        if (clientTokenCallback == null) return;
+        if (clientTokenCallback == "") return;
 
-          OAuth2Helper Helper = new(DiscordApplicationData.Id, DiscordApplicationData.GetClientSecret());
+        string[] clientTokenItems = clientTokenCallback.Split(", ");
+        CallbackToken token = new(clientTokenItems[0], int.Parse(clientTokenItems[1]), clientTokenItems[2], clientTokenItems[3], clientTokenItems[4]);
 
-          //  Old Token
-          await Helper.SetBearerHeader(token);
-          CallbackUser user = await Helper.GetCurrentUser();
+        //  Using Old Token
+        await Helper.SetBearerHeader(token);
+        CallbackUser? user = await Helper.GetCurrentUser();
+        if (user.User == null) return;
 
-          Console.WriteLine("- - Using OLD token: " + user.User.Username);
+        if (user.User != null) await JS.InvokeVoidAsync("ClientUser.setUser", user);
 
-          // New token
-          if (user == null)
-          {
-            token = (CallbackToken)await Helper.GetRefreshedToken(token);
-            await Helper.SetBearerHeader(token);
-
-            await JS.InvokeVoidAsync("ClientUser.setToken", token);
-
-            user = await Helper.GetCurrentUser();
-            Console.WriteLine("- - Using NEW token: " + user.User.Username);
-          }
-
-          await JS.InvokeVoidAsync("ClientUser.setUser", user);
+        await JS.InvokeVoidAsync("ClientUser.setUser", user);
         }
       }
     }

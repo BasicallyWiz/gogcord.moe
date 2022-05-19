@@ -14,18 +14,19 @@
     </div>
 
     <main>
-        <div class="top-row px-4">
-            <div class="user-info">
-              <img class="avatar" id="profile_avatar" src="https://cdn.discordapp.com/avatars/@activeUser.Id/@activeUser.Avatar" @onclick="ToggleUserCard"/>
-              <p class="username" id="profile_username" @onclick="ToggleUserCard">@activeUser.Username</p>
-              <div class="profile-dropdown @UserCardHidden">
-              @if (activeUser.Username != "Not logged in") {<AccountDropdown/>} else {<NotLoggedInProfileDropdown/>}
-              </div>
-            </div>
+      <div class="top-row px-4">
+        <div class="user-info">
+            <img class="avatar" id="profile_avatar" src="https://cdn.discordapp.com/avatars/@activeUser.Id/@activeUser.Avatar" @onclick="ToggleUserCard"/>
+            <p class="username" id="profile_username" @onclick="ToggleUserCard">@activeUser.Username</p>
+          <div class="profile-dropdown @UserCardHidden">
+            <!--TODO: Fix issue with no dropdowns functioning when ParentLayout is set-->
+            @if (activeUser.Username != "Not logged in") {<AccountDropdown ParentLayout=this/>} else {<NotLoggedInProfileDropdown/>}
+          </div>
         </div>
+      </div>
 
-        <article class="content px-4">
-            @Body
-        </article>
+      <article class="content px-4">
+          @Body
+      </article>
     </main>
 </div>

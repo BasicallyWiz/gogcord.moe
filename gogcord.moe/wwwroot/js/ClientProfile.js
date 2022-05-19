@@ -12,11 +12,21 @@
     document.cookie = `user = ${callbackUser.user.id}, ${callbackUser.user.username}, ${callbackUser.user.avatar}; path=/; secure= true;`
     this.setUserDisplay(callbackUser.user);
   },
-  getUser: function (args) {
+  getUser: function () {
     var cookies = document.cookie.split(";");
     for (var i = 0; i < cookies.length; i++) {
       if (cookies[i].startsWith("user=")) {
         return cookies[i].replace("user=", "");
+      }
+    }
+  },
+  clearUser: function () {
+    var cookies = document.cookie.split(";");
+    for (var i = 0; i < cookies.length; i++) {
+      if (cookies[i].startsWith("user=")) {
+        document.cookie = "user=; path=/; secure= true;";
+        document.cookie = `access_token=; path=/; secure= true;`;
+        document.cookie = `old_auth=; path=/; secure= true;`;
       }
     }
   },
@@ -36,7 +46,7 @@
   },
 
   storeOldAuth: function (AuthCode) {
-    document.cookie = `old_auth= ${AuthCode}; secure= true;`
+    document.cookie = `old_auth= ${AuthCode}; path=/; secure= true;`
   },
   getOldAuth: function () {
     var cookies = document.cookie.split("; ");

@@ -102,7 +102,7 @@ namespace DiscordOAuth2Helper
 
       return JsonSerializer.Deserialize<CallbackToken>(await response.Content.ReadAsStringAsync());
     }
-    public async Task<CallbackUser> GetCurrentUser()
+    public async Task<CallbackUser>? GetCurrentUser()
     {
       HttpResponseMessage response = await Client.GetAsync("https://discord.com/api/v8/oauth2/@me");
 
