@@ -1,14 +1,33 @@
 ﻿@page "/"
+@page "/Home"
 @using gogcord.moe.Data;
 @using System.Collections.Generic;
 @using Microsoft.JSInterop;
+@inject IJSRuntime JS;
 
 <PageTitle>Gogcord!</PageTitle>
 
-<h1>Gogcord</h1>
 
-<p>
-  Gogcord is a community of likeminded individuals, all here to enjoy the gog series, our ever-expanding collection of primate gifs and videos.
-  <br/>
-  Join gogcord and experience the horror for yourself.
-</p>
+<div class="main-stuff" id="shit-in-my-mouth" style="background-image:url(@backGroundUri)">
+  @if (guildInfo != null)
+  {
+    <div id="server-widget">
+      <div class="server-thumb" style="background-image:url(@(NavManager.BaseUri)images/gogcord/gogflag.png)">
+        <h1 class="server-title">@guildInfo.Name</h1>
+      </div>
+      <div class="server-details">
+        <div class="server-members">
+          Some of our members
+        </div>
+        <div class="server-vcs">
+          Our Voice Channels
+        </div>
+        <a onclick="window.open('@(guildInfo.Instant_Invite)')">Join @(guildInfo.Name)</a>
+      </div>
+    </div>
+  }
+  else
+  {
+    <p>There's supposed to be a Discord server widget I made right here. Odd.</p>
+  }
+</div>

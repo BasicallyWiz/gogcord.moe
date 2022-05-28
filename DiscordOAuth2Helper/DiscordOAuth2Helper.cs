@@ -105,9 +105,7 @@ namespace DiscordOAuth2Helper
     public async Task<CallbackUser>? GetCurrentUser()
     {
       HttpResponseMessage response = await Client.GetAsync("https://discord.com/api/v8/oauth2/@me");
-
-      //Console.WriteLine(await response.Content.ReadAsStringAsync());
-
+      
       return JsonSerializer.Deserialize<CallbackUser>(await response.Content.ReadAsStringAsync());
     }
   }

@@ -1,6 +1,10 @@
-﻿
-h1 {
-
+﻿h1 {
   margin: auto;
+
+  height: 100%;
+  width: 100%;
+  
+  color: white;
   font-size: min(30vw, 40vh);
+  background-image: url(https://lh6.googleusercontent.com/proxy/YP986Qmzcl-HaYJkFpsyUmKUZlLKIQ2pOOGZmEXaELQpBZkkUpF92iIeVlck_VwGnxe7V-I6XiTg1iEaPAL3bzbOkoQAN9kjeiMjNC9jE1y0gIrTWBujU98peaNB_S742FP4-2IC682bPZR00cQqlO6Xeb6d--TrFx_vVLA=s0) !important;
 }

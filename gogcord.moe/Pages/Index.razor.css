@@ -1,0 +1,50 @@
+﻿.main-stuff {
+  display: flex;
+
+  position: relative;
+
+  margin: 0px;
+  height: 100%;
+  width: 100%;
+
+  background-position: 100% 60%;
+  background-size: cover;
+
+  color: var(--scheme-text-color);
+}
+
+#server-widget {
+  position: relative;
+
+  height: min(63vh, 80vw);
+  aspect-ratio: 1.1 / 1;
+  padding: 8px;
+  margin: auto;
+
+  border-radius: 12px;
+  background: var(--scheme-discord-background);
+}
+
+.server-thumb {
+  display: flex;
+
+  position: relative;
+
+  height:50%;
+  width: 100%;
+  overflow: hidden;
+
+  background-size: cover;
+  background-position: 50% 50%;
+
+  border-radius: 8px;
+}
+
+  .server-thumb .server-title {
+    position: relative;
+    height: fit-content;
+    width: fit-content;
+    margin: auto 11% auto auto;
+    font-size: min(8vh, 10.2vw);
+    color: #6f5c48;
+  }

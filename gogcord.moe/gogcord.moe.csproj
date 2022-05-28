@@ -25,4 +25,8 @@
     <ProjectReference Include="..\DiscordOAuth2Helper\DiscordOAuth2Helper.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\Interfaces\" />
+  </ItemGroup>
+
 </Project>

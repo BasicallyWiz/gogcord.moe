@@ -1,13 +1,74 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
+
+@media(prefers-color-scheme: dark) {
+  :root {
+    /*Base Theme*/
+    --scheme-text-color: white;
+    --scheme-background: var(--visual-studio-background);
+    --scheme-accent: var(--visual-studio-grey);
+    --scheme-accent-hover: var(--visual-studio-grey-hover);
+    /*Discord Theme*/
+    --scheme-discord-background: var(--discord-dark-background);
+    --scheme-discord-accent-one: var(--discord-dark-accent-one);
+    --scheme-discord-accent-two: var(--discord-dark-accent-two);
+    --scheme-discord-text: var(--discord-dark-text);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    /*Base theme*/
+    --scheme-text-color: #212529;
+    --scheme-background: white;
+    --scheme-accent: #f7f7f6;
+    --scheme-accent-hover: #d6d5d5;
+    /*Discord Theme*/
+    --scheme-discord-background: var(--discord-light-background);
+    --scheme-discord-accent-one: var(--discord-light-accent-one);
+    --scheme-discord-accent-two: var(--discord-light-accent-two);
+    --scheme-discord-text: var(--discord-light-text);
+  }
+}
+
 :root {
-  --purple-1: #8886ff;
-  --purple-2: #9886ff;
-  --purple-3: #b086ff;
+  /*Firefox Colours*/
+  --firefox-purple: #6d4a82;
+  --firefox-dark-purple: #4e315e;
+  --firefox-light-purple: #8a57a8;
+  --firefox-gray-purple: #3a3041;
+  /*Firefox Developer*/
+  --firefox-dev-background: #232327;
+  --firefox-dev-accent: 38383d;
+  /*Visual Studio 2022 Colours*/
+  --visual-studio-background: #1f1f1f;
+  --visual-studio-grey: #3d3d3d;
+  --visual-studio-grey-hover: #999999;
+  --visual-studio-accent-blue: #7160e8;
+  
+  /*Discord Dark*/
+  --discord-dark-background: #36393f;
+  --discord-dark-accent-one: #2f3136;
+  --discord-dark-accent-two: #202225;
+  --discord-dark-text      : #96989d;
+  /*Discord Light :deathwaah:*/
+  --discord-light-background: #ffffff;
+  --discord-light-accent-one: #f2f3f5;
+  --discord-light-accent-two: #e3e5e8;
+  --discord-dark-text: #060607;
 }
 
 html, body {
+  height: 100vh;
+  width: 100vw;
+
+  overflow: hidden;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.page {
+  height: 100%;
+  width: 100%;
 }
 
 h1:focus {
@@ -25,7 +86,7 @@ a, .btn-link {
 }
 
 .content {
-  padding-top: 1.1rem;
+  height: 100%;
 }
 
 .valid.modified:not([type=checkbox]) {

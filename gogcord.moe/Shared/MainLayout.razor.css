@@ -13,8 +13,8 @@ main {
 }
 
 .top-row {
-    background-color: #f7f7f6;
-    border-bottom: 1px solid #d6d5d5;
+    background-color: var(--scheme-accent);
+    border-bottom: 1px solid var(--scheme-accent-hover);
     justify-content: flex-end;
     height: 3.5rem;
     display: flex;
@@ -24,7 +24,7 @@ main {
   .top-row .user-info {
     position: relative;
     display: flex; /* Change this to flex once a need for profiles arises */
-    /* pointer-events: none; remove this once above condition is met*/
+    /* pointer-events: none; remove this once above condition is met */
     height: 100%;
     cursor: pointer;
   }
@@ -38,6 +38,8 @@ main {
 }
 
 .top-row .user-info .username {
+
+  color: var(--scheme-text-color);
   font-size: 25px;
   height: fit-content;
   width: fit-content;
@@ -104,10 +106,5 @@ main {
         position: sticky;
         top: 0;
         z-index: 1;
-    }
-
-    .top-row, article {
-        padding-left: 2rem !important;
-        padding-right: 1.5rem !important;
     }
 }

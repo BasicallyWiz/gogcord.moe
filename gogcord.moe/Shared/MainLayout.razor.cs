@@ -1,11 +1,7 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
-using DiscordOAuth2Helper;
-using System.Text.Json;
-using System.IO;
-
-
+﻿using DiscordOAuth2Helper;
 using gogcord.moe.Data;
+using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 namespace gogcord.moe.Shared
 {
   public partial class MainLayout
@@ -18,16 +14,15 @@ namespace gogcord.moe.Shared
     private bool UserCardExpanded = false;
 
     private string? UserCardHidden => !UserCardExpanded ? "card-hidden" : null;
-    private void ToggleUserCard() { UserCardExpanded = !UserCardExpanded; OnAfterRenderAsync(false); }
+    private void ToggleUserCard() { UserCardExpanded = !UserCardExpanded; _ = OnAfterRenderAsync(false); }
     private void HideUserCard() { UserCardExpanded = false; }
 
     readonly OAuth2Helper helper = new(DiscordApplicationData.Id, DiscordApplicationData.GetClientSecret());
 
-    public Task LogoutUser()
+    public async Task LogoutUser()
     {
-      JS.InvokeVoidAsync("ClientUser.clearUser");
+      await JS.InvokeVoidAsync("ClientUser.clearUser");
       activeUser = new("", "Not logged in", "", null, "", 0);
-      return Task.CompletedTask;
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -39,7 +34,7 @@ namespace gogcord.moe.Shared
 
         if (clientTokenCallback == null) return;
         if (clientTokenCallback == "") return;
-        
+
         string[] clientTokenItems = clientTokenCallback.Split(", ");
         CallbackToken token = new(clientTokenItems[0], int.Parse(clientTokenItems[1]), clientTokenItems[2], clientTokenItems[3], clientTokenItems[4]);
 
@@ -52,6 +47,7 @@ namespace gogcord.moe.Shared
 
         if (user.User != null) await JS.InvokeVoidAsync("ClientUser.setUser", user);
       }
+
 
       if (activeUser.Username == "Not logged in")
       {
