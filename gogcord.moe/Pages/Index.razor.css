@@ -48,3 +48,78 @@
     font-size: min(8vh, 10.2vw);
     color: #6f5c48;
   }
+
+.server-details {
+  display: flex;
+  position: relative;
+
+  height: 50%;
+
+  border-radius: 8px;
+  gap: 8px;
+  padding-top: 10px;
+}
+
+  .server-details .server-members {
+    width: 69%;
+    height: 100%;
+
+    background-color: var(--scheme-discord-accent-one);
+
+    overflow: hidden scroll;
+    border-radius: 8px;
+  }
+
+  .server-details .server-right {
+    position: relative;
+    width: 31%;
+  }
+
+  .server-details .server-vcs {
+    width: 100%;
+
+    background-color: var(--scheme-discord-accent-one);
+    border-radius: 8px;
+
+  }
+
+  .server-details .server-channels {
+    background-color: var(--scheme-discord-accent-one);
+    margin-bottom: 8px;
+
+    height: calc(80% - 8px);
+
+    border-radius: 8px;
+  }
+
+  .server-details .join-button {
+    position: absolute;
+    display: flex;
+
+    grid-area: join;
+    width: 100%;
+    height: 20%;
+
+    text-align: center;
+    font-size: min(3vh, 3vw);
+    color: #3ba55d;
+
+    background-color: var(--scheme-discord-accent-one);
+    border-radius: 8px;
+
+    transition-duration: 0.1s;
+
+    cursor: pointer;
+  }
+
+    .server-details .join-button p {
+      margin: auto;
+    }
+
+    .server-details .join-button:hover {
+      color: var(--scheme-text-color);
+
+      border-radius: 16px;
+
+      background-color: #3ba55d;
+    }

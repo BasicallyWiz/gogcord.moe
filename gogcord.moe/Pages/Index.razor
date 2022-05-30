@@ -1,6 +1,7 @@
 ﻿@page "/"
 @page "/Home"
 @using gogcord.moe.Data;
+@using gogcord.moe.Data.Discord;
 @using System.Collections.Generic;
 @using Microsoft.JSInterop;
 @inject IJSRuntime JS;
@@ -17,12 +18,20 @@
       </div>
       <div class="server-details">
         <div class="server-members">
-          Some of our members
+          @foreach (MemberInfo member in guildInfo.Members)
+          {
+            <DiscordMember memberInfo=member/>
+          }
+
         </div>
-        <div class="server-vcs">
-          Our Voice Channels
+        <div class="server-right">
+          <div class="server-channels">
+
+          </div>
+          <div class="join-button" onclick="window.open('@(guildInfo.Instant_Invite)')">
+            <p>Join @(guildInfo.Name)</p>
+          </div>
         </div>
-        <a onclick="window.open('@(guildInfo.Instant_Invite)')">Join @(guildInfo.Name)</a>
       </div>
     </div>
   }

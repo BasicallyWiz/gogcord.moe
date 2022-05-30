@@ -18,10 +18,8 @@ namespace gogcord.moe.Data
     public async Task<GuildInfo> GetGuildInfo()
     {
       HttpResponseMessage response = await Client.GetAsync($"https://discord.com/api/guilds/{GuildId}/widget.json");
-      GuildInfo guildInfo = JsonSerializer.Deserialize<GuildInfo>(await response.Content.ReadAsStringAsync());
+      return JsonSerializer.Deserialize<GuildInfo>(await response.Content.ReadAsStringAsync());
       
-      Console.WriteLine(guildInfo.Name);
-      return guildInfo;
     }
   }
 }

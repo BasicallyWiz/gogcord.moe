@@ -1,0 +1,13 @@
+﻿@using gogcord.moe.Data.Discord;
+
+<div>
+  <img src="@memberInfo.Avatar_Url"/>
+  <p>@memberInfo.Username</p>
+</div>
+
+@code {
+  [Parameter]
+  public MemberInfo memberInfo { get; set; }
+
+  //TODO: Fix population error in memberInfo
+}

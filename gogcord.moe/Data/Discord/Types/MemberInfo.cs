@@ -4,11 +4,17 @@ namespace gogcord.moe.Data.Discord
 {
   public class MemberInfo : IMemberInfo
   {
+    [JsonPropertyName("id")]
     public string Id { get; }
+    [JsonPropertyName("username")]
     public string Username { get; }
+    [JsonPropertyName("discriminator")]
     public string Discriminator { get; }
+    [JsonPropertyName("avatar")]
     public object? Avatar { get; }
+    [JsonPropertyName("status")]
     public string Status { get; }
+    [JsonPropertyName("avatar_url")]
     public string Avatar_Url { get; }
     [JsonExtensionData]
     public Dictionary<string, object> ExtentionData { get; }

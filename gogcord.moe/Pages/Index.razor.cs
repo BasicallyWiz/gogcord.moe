@@ -32,6 +32,8 @@ namespace gogcord.moe.Pages
       return "";
     }
 
+
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
       if (firstRender) {
