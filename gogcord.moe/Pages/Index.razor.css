@@ -47,7 +47,14 @@
     margin: auto 11% auto auto;
     font-size: min(8vh, 10.2vw);
     color: #6f5c48;
+
+    pointer-events: none;
   }
+
+    .server-title::selection {
+      color:unset;
+      background: unset;
+    }
 
 .server-details {
   display: flex;
@@ -61,6 +68,11 @@
 }
 
   .server-details .server-members {
+    display: grid;
+    grid-template-columns: calc(20% - 3px) calc(20% - 3px) calc(20% - 3px) calc(20% - 3px) calc(20% - 3px);
+    column-count: 5;
+    gap: 4px;
+
     width: 69%;
     height: 100%;
 
@@ -68,7 +80,13 @@
 
     overflow: hidden scroll;
     border-radius: 8px;
+
+    scrollbar-width: thin;
   }
+
+    .member-container {
+      width: 20%;
+    }
 
   .server-details .server-right {
     position: relative;
@@ -90,6 +108,9 @@
     height: calc(80% - 8px);
 
     border-radius: 8px;
+
+    overflow: hidden scroll;
+    scrollbar-width: thin;
   }
 
   .server-details .join-button {
@@ -114,6 +135,11 @@
 
     .server-details .join-button p {
       margin: auto;
+    }
+
+    .join-button p::selection {
+      color: unset;
+      background: unset;
     }
 
     .server-details .join-button:hover {

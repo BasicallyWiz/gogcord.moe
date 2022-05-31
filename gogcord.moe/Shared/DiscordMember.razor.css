@@ -1,0 +1,38 @@
+﻿.member-container {
+  position: relative;
+
+  width: 100%;
+  aspect-ratio: 1 / 1;
+
+  background-size: cover;
+
+  border-radius: 12px;
+}
+
+.member-container::after {
+  position: absolute;
+  content: "";
+
+  bottom: 4px;
+  right: 4px;
+
+
+  width: 25%;
+  height: 25%;
+
+  border-top: solid 4px var(--scheme-discord-background);
+  border-left: solid 4px var(--scheme-discord-background);
+  border-radius: 50% 0 50% 0;
+}
+
+.status-online::after {
+  background-color: #379a57;
+}
+
+.status-idle::after {
+  background-color: #f2a319;
+}
+
+.status-dnd::after {
+  background-color: #ed4245;
+}

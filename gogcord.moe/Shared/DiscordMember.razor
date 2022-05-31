@@ -1,13 +1,4 @@
-﻿@using gogcord.moe.Data.Discord;
-
-<div>
-  <img src="@memberInfo.Avatar_Url"/>
-  <p>@memberInfo.Username</p>
+﻿
+<div class="member-container @GetStatusColorClass(memberInfo.Status)" style="background-image:url(@memberInfo.Avatar_Url);">
+  <!--p class="username">@memberInfo.Username</p!-->
 </div>
-
-@code {
-  [Parameter]
-  public MemberInfo memberInfo { get; set; }
-
-  //TODO: Fix population error in memberInfo
-}

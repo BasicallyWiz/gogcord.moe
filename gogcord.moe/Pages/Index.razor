@@ -26,7 +26,10 @@
         </div>
         <div class="server-right">
           <div class="server-channels">
-
+            @foreach (ChannelInfo channel in guildInfo.Channels)
+            {
+              <DiscordChannel ChannelInfo=channel/>
+            }
           </div>
           <div class="join-button" onclick="window.open('@(guildInfo.Instant_Invite)')">
             <p>Join @(guildInfo.Name)</p>
