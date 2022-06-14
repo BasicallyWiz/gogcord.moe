@@ -1,6 +1,11 @@
 ﻿.stuff-container {
   display: flex;
   flex-direction: column;
+
+  height: 100%;
+
+  color: var(--scheme-text-color);
+  background-color: var(--scheme-background);
 }
 
 .stuff-image {

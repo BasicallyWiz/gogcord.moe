@@ -70,3 +70,19 @@
         display: block;
     }
 }
+
+.cool-icon {
+  position: relative;
+  display:flex;
+    padding-top: 4px;
+    aspect-ratio: 1/1;
+
+    justify-items: center;
+    align-items: center;
+}
+
+.cool-icon path {
+  position: relative;
+  height: fit-content;
+  width: fit-content;
+}

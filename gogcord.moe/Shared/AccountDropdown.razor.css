@@ -3,7 +3,7 @@
   margin: 8px 0px 8px 0px !important;
   padding: 3px 0px 3px 0px;
   width: 100%;
-  color: black;
+  color: var(--scheme-text-color);
   font-size: 20px;
   text-decoration: none;
   cursor: pointer;

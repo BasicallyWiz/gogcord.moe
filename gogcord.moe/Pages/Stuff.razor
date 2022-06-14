@@ -1,11 +1,13 @@
 ﻿@page "/Stuff"
+@inject NavigationManager NavManager;
+@using gogcord.moe.AdvancedUI
 
 <div class="stuff-container">
   <img class="stuff-image" src="https://i.imgur.com/x4EQ7xH.png"/>
-  <h1 class="stuff-title">Stuff</h1>
-  <p class="stuff-description">Page dedicated to developer resources.</p>
+  <h1 class="stuff-title">Gogcord.moe Resources</h1>
 
-  <div>
+  <!--TODO: Create a nice looking grid system, and display some "Stuff" here.-->
+  <XboxLikeCardGridSystem Cards="Cards"/>
+  @SetLinks()
 
-  </div>
 </div>

@@ -1,0 +1,7 @@
+﻿@namespace gogcord.moe.AdvancedUI
+@using gogcord.moe.Data
+<div class="card-list">
+  @foreach (ICardItemData CardItem in Cards) {
+    <CardItem CardData="(CardItemData)CardItem" MotherGrid="this"/>
+  }
+</div>

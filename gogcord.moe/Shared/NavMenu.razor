@@ -1,4 +1,4 @@
-﻿<link rel="stylesheet" href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+﻿@inject NavigationManager NavManager;
 
 <div class="top-row ps-3 navbar navbar-dark">
   <div class="container-fluid">
@@ -22,12 +22,16 @@
       <NavLink class="nav-link" @onclick="ToggleNavMenu" style="cursor:pointer;">
         @if (!collapseNavMenu) 
         { 
-          <span class="material-symbols-outlined">arrow_back_ios</span> 
+          <svg style="height: 3.9em; fill: var(--scheme-text-color);" class="cool-icon" xmlns="http://www.w3.org/2000/svg">
+	          <path d="M20 44 0 24 20 4 22.8 6.85 5.65 24 22.8 41.15Z"/>
+          </svg>
           <p style="font-size:20px; line-height:0px; height:fit-content; padding:0px; margin:auto;">Hide Navbar</p>
         } 
         else
         {
-          <span class="material-symbols-outlined">arrow_forward_ios</span> 
+          <svg style="height: 3.9em; fill: var(--scheme-text-color); position:absolute;" class="cool-icon" xmlns="http://www.w3.org/2000/svg">
+	          <path d="M20 44 0 24 20 4 22.8 6.85 5.65 24 22.8 41.15Z"/>
+          </svg>
         }
       </NavLink>
     </div>

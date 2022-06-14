@@ -15,11 +15,6 @@ namespace gogcord.moe.Pages
     GuildInfoLoader guildInfoLoader = new("601549765611749397");
     GuildInfo? guildInfo = null;
 
-    public Index()
-    {
-
-    }
-
     public string CheckStateChanged()
     {
       if (hasStateChangedOnce != true)
@@ -31,8 +26,6 @@ namespace gogcord.moe.Pages
       }
       return "";
     }
-
-
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {

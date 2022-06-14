@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <Folder Include="Data\Interfaces\" />
+    <Folder Include="Pages\Stuff\" />
   </ItemGroup>
 
 </Project>

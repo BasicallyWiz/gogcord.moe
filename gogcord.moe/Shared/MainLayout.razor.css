@@ -23,8 +23,8 @@ main {
 
   .top-row .user-info {
     position: relative;
-    display: flex; /* Change this to flex once a need for profiles arises */
-    /* pointer-events: none; remove this once above condition is met */
+    display: none; /* Change this to flex once a need for profiles arises */
+    pointer-events: none; /* remove this once above condition is met */
     height: 100%;
     cursor: pointer;
   }
@@ -51,10 +51,10 @@ main {
   position: absolute;
   top: 56px;
   width: 100%;
-  background-color: #f7f7f6;
+  background-color: var(--scheme-accent);
   cursor: default;
   border-radius: 0px 0px 10px 10px;
-  border: solid 1px #d6d5d5;
+  border: solid 1px var(--scheme-accent-hover);
   border-top: none;
   transition-duration: 0.3s;
   animation-duration: 0.3s;
