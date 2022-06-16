@@ -1,0 +1,61 @@
+﻿@inject NavigationManager NavManager;
+
+<div class="top-row ps-3 navbar navbar-dark">
+  <div class="container-fluid">
+    @if (!collapseNavMenu) { <a class="navbar-brand" href="" style="width:180px;">@RandomSaying()</a> }
+    <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</div>
+
+<div class="@NavMenuCssClass" style="position:relative; height:calc(100% - 56px);">
+  <nav class="flex-column" style="display:flex; height:100%;">
+    <div class="nav-item px-3" style="position:relative;">
+      <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+        <span class="oi oi-home" href="" aria-hidden="true"></span> 
+        @if (!collapseNavMenu) { <p style="font-size:20px; line-height:0px; height:fit-content; padding:0px; margin:auto;">Home</p> }
+      </NavLink>
+    </div>
+    <!--LAST ITEM IS HIDE BUTTON. KEEP AS LAST ITEM.-->
+    <div class="nav-item px-3" style="position:relative; height:fit-content; margin-top:auto;">
+      
+        @if (!collapseNavMenu) 
+        {
+        <NavLink class="nav-link" @onclick="ToggleNavMenu" style="cursor:pointer; width: fit-content;">
+          <svg style="height:2.3rem; fill:var(--scheme-text-color)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048" class="svg_dd790ee3 x-hidden-focus" focusable="false">
+            <path d="M515 1955l930-931L515 93l90-90 1022 1021L605 2045l-90-90z"></path>
+          </svg>
+          <p style="font-size:20px; line-height:0px; height:fit-content; padding:0px; margin:auto;">Hide Navbar</p>
+        </NavLink>
+        } 
+        else
+        {
+        <NavLink class="nav-link" @onclick="ToggleNavMenu" style="cursor:pointer; width: 3.08rem;">
+          <svg style="position:absolute; display:inline; fill:var(--scheme-text-color); height:2.3rem; width: 2rem; left: 30%;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048" class="svg_dd790ee3" focusable="false">
+            <path d="M1443 2045L421 1024 1443 3l90 90-930 931 930 931-90 90z"></path>
+          </svg>
+        </NavLink>
+        }
+      
+    </div>
+  </nav>
+</div>
+
+@code {
+  private bool collapseNavMenu = true;
+
+  public string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+  private void ToggleNavMenu()
+  {
+    collapseNavMenu = !collapseNavMenu;
+  }
+
+  private string RandomSaying()
+  {
+    List<string> sayings = new() { "Gogcord!", "So goggy!", ":gogSerious:", "Bestcord!" };
+    Random random = new();
+    return sayings[random.Next(sayings.Count)];
+  }
+}

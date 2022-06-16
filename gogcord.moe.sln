@@ -1,11 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.1.32407.343
+VisualStudioVersion = 17.3.32519.111
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "gogcord.moe", "gogcord.moe\gogcord.moe.csproj", "{588CE8D3-9B20-47DF-B667-2CD0A49EBC0A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "gogcord.moe.Client", "gogcord.moe\Client\gogcord.moe.Client.csproj", "{3A83197F-8484-45DF-8A7D-71D2C0F3F634}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscordOAuth2Helper", "DiscordOAuth2Helper\DiscordOAuth2Helper.csproj", "{8667556E-F4BB-4C4B-8146-E841FBC34E08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "gogcord.moe.Server", "gogcord.moe\Server\gogcord.moe.Server.csproj", "{04DCF157-79DB-48BA-8190-58F6F5D5006A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "gogcord.moe.Shared", "gogcord.moe\Shared\gogcord.moe.Shared.csproj", "{6126F403-2D02-41E7-8952-8000F52024CC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscordOAuth2Helper", "DiscordOAuth2Helper\DiscordOAuth2Helper.csproj", "{089EB5C4-757A-4B5D-9188-473FBE0EE1A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,19 +17,27 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{588CE8D3-9B20-47DF-B667-2CD0A49EBC0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{588CE8D3-9B20-47DF-B667-2CD0A49EBC0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{588CE8D3-9B20-47DF-B667-2CD0A49EBC0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{588CE8D3-9B20-47DF-B667-2CD0A49EBC0A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8667556E-F4BB-4C4B-8146-E841FBC34E08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8667556E-F4BB-4C4B-8146-E841FBC34E08}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8667556E-F4BB-4C4B-8146-E841FBC34E08}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8667556E-F4BB-4C4B-8146-E841FBC34E08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A83197F-8484-45DF-8A7D-71D2C0F3F634}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A83197F-8484-45DF-8A7D-71D2C0F3F634}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A83197F-8484-45DF-8A7D-71D2C0F3F634}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A83197F-8484-45DF-8A7D-71D2C0F3F634}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04DCF157-79DB-48BA-8190-58F6F5D5006A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04DCF157-79DB-48BA-8190-58F6F5D5006A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04DCF157-79DB-48BA-8190-58F6F5D5006A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04DCF157-79DB-48BA-8190-58F6F5D5006A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6126F403-2D02-41E7-8952-8000F52024CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6126F403-2D02-41E7-8952-8000F52024CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6126F403-2D02-41E7-8952-8000F52024CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6126F403-2D02-41E7-8952-8000F52024CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{089EB5C4-757A-4B5D-9188-473FBE0EE1A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{089EB5C4-757A-4B5D-9188-473FBE0EE1A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{089EB5C4-757A-4B5D-9188-473FBE0EE1A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{089EB5C4-757A-4B5D-9188-473FBE0EE1A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {C4486188-D044-465A-97BE-42AD72251FC4}
+		SolutionGuid = {DFFCC4B6-04DD-43A3-A6D5-11F50F7C68EE}
 	EndGlobalSection
 EndGlobal

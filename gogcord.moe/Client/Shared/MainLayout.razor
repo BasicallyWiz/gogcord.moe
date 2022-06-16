@@ -1,0 +1,29 @@
+﻿@namespace gogcord.moe.Client
+@inherits LayoutComponentBase
+@inject NavigationManager NavManager;
+
+
+<PageTitle>gogcord.moe</PageTitle>
+
+<div class="page">
+    <div class="gog-sidebar">
+        <NavMenu/>
+    </div>
+
+    <main>
+      <div class="top-row px-4">
+        <div class="user-info">
+            <img class="avatar" id="profile_avatar" src="https://cdn.discordapp.com/avatars/@activeUser.Id/@activeUser.Avatar" @onclick="ToggleUserCard"/>
+            <p class="username" id="profile_username" @onclick="ToggleUserCard">@activeUser.Username</p>
+          <div class="profile-dropdown @UserCardHidden">
+            <!--TODO: Fix issue with no dropdowns functioning when ParentLayout is set-->
+            @if (activeUser.Username != "Not logged in") {<AccountDropdown ParentLayout="this"/>} else {<NotLoggedInProfileDropdown/>}
+          </div>
+        </div>
+      </div>
+
+      <article class="content">
+          @Body
+      </article>
+    </main>
+</div>
