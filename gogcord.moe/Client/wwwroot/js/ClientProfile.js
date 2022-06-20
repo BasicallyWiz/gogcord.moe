@@ -1,5 +1,4 @@
 ﻿window.ClientUser = {
-
   // Profile & User
   setUserDisplay: function (user) {
     document.getElementById("profile_avatar").src = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}`;

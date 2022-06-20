@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using gogcord.moe.Shared.Discord;
 
 namespace gogcord.moe.Server.Controllers
@@ -12,7 +11,7 @@ namespace gogcord.moe.Server.Controllers
     public GuildInfo Get()
     {
       GuildInfoLoader Loader = new("601549765611749397");
-      return (Loader.GetGuildInfo().Result);
+      return Loader.GetGuildInfo().Result;
     }
   }
 }

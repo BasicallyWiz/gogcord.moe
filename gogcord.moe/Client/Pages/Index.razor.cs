@@ -18,9 +18,34 @@ namespace gogcord.moe.Client.Pages
 
     protected async override Task OnInitializedAsync()
     {
+      try
+      {
+        guildInfo = await Http.GetFromJsonAsync<GuildInfo>("api/GuildInfo");
+      } catch (Exception err) { Console.WriteLine(err); }
 
+      Random random = new();
+      if (await JS.InvokeAsync<bool>("WindowUtils.isDarkTheme", null))
+      {
+        string[] backgrounds = new string[] 
+        { 
+          "ape.jpg" ,
+          "gog-master-wallpaper.png",
+          "tufted-capuchin.jfif",
+          "tufted-capuchin-sees.jfif"
+        };
 
-      guildInfo = await Http.GetFromJsonAsync<GuildInfo>("api/GuildInfo");
+        backGroundUri = $"{NavManager.BaseUri}images/backgrounds/dark/{backgrounds[random.Next(backgrounds.Length)]}";
+      }
+      else
+      {
+        string[] backgrounds = new string[]
+        {
+          "tufted-capuchin-close.webp",
+          "Vervet_Monkey_Gorongosa_National_Park.jpg"
+        };
+
+        backGroundUri = $"{NavManager.BaseUri}images/backgrounds/light/{backgrounds[random.Next(backgrounds.Length)]}";
+      }
     }
   }
 }
