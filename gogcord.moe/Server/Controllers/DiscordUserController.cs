@@ -30,7 +30,7 @@ namespace gogcord.moe.Server.Controllers
     {
       Console.WriteLine(baseUrl);
       OAuth2Helper helper = new(DiscordApplicationData.Id, DiscordApplicationData.GetClientSecret());
-      return JsonSerializer.Serialize((CallbackToken)helper.GetAccessToken(value, "https://localhost:7063/Profile/").Result);
+      return JsonSerializer.Serialize((CallbackToken)helper.GetAccessToken(value, baseUrl + "Profile/").Result);
     }
 
     [HttpPost("CurrentUser")]
