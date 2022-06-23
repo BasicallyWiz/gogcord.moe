@@ -64,7 +64,7 @@ namespace DiscordOAuth2Helper
         };
 
       HttpResponseMessage response = await Client.PostAsync("https://discord.com/api/v8/oauth2/token", new FormUrlEncodedContent(form));
-
+      Console.WriteLine(await response.Content.ReadAsStringAsync());
       return JsonSerializer.Deserialize<CallbackToken>(await response.Content.ReadAsStringAsync());
     }
     /// <summary>

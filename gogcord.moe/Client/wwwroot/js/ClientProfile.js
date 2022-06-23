@@ -7,7 +7,7 @@
 
   setUser: function (callbackUser) {
 
-    document.cookie = `user = ${callbackUser.user.id}, ${callbackUser.user.username}, ${callbackUser.user.avatar}; path=/; secure= true;`
+    document.cookie = `user = ${callbackUser.user.id}, ${callbackUser.user.username}, ${callbackUser.user.avatar}; path=/; secure= true; SameSite=Strict;`
     this.setUserDisplay(callbackUser.user);
   },
   getUser: function () {
@@ -31,25 +31,26 @@
 
   // Token
   setToken: function (token) {
-    document.cookie = `access_token = ${token.access_token}, ${token.expires_in}, ${token.refresh_token}, ${token.scope}, ${token.token_type}; path=/; secure= true;`
+    document.cookie = `access_token = ${token.access_token}, ${token.expires_in}, ${token.refresh_token}, ${token.scope}, ${token.token_type}; path=/;secure=true;SameSite=Strict;`
   },
   getToken: function () {
     var cookies = document.cookie.split("; ");
     for (let i = 0; i < cookies.length; i++) {
-      console.log(cookies[i]);
       if (cookies[i].startsWith("access_token=")) {
-        return cookies[i].replace("access_token=", "");
+        cookies[i] = cookies[i].replace("access_token=", "");
+
+        SplitCookie = cookies[i].split(", ");
+        return `{"access_token":"${SplitCookie[0]}","expires_in":${SplitCookie[1]},"refresh_token":"${SplitCookie[2]}","scope":"${SplitCookie[3]}","token_type":"${SplitCookie[4]}"}`;
       }
     }
   },
 
   storeOldAuth: function (AuthCode) {
-    document.cookie = `old_auth= ${AuthCode}; path=/; secure= true;`
+    document.cookie = `old_auth= ${AuthCode}; path=/; secure= true; samesite= Strict;`
   },
   getOldAuth: function () {
     var cookies = document.cookie.split("; ");
     for (let i = 0; i < cookies.length; i++) {
-      console.log(cookies[i]);
       if (cookies[i].startsWith("old_auth=")) {
         return cookies[i].replace("old_auth=", "");
       }

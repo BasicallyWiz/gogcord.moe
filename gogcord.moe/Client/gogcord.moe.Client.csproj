@@ -16,4 +16,8 @@
     <ProjectReference Include="..\Shared\gogcord.moe.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\Types\" />
+  </ItemGroup>
+
 </Project>

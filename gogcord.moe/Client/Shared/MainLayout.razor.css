@@ -23,8 +23,8 @@ main {
 
   .top-row .user-info {
     position: relative;
-    display: none; /* Change this to flex once a need for profiles arises */
-    pointer-events: none; /* remove this once above condition is met */
+    display: flex; /* Change this to flex once a need for profiles arises */
+    /* pointer-events: none; remove this once above condition is met */
     height: 100%;
     cursor: pointer;
   }

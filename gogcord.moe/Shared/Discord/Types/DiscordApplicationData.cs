@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace gogcord.moe.Client.Data
+namespace gogcord.moe.Shared.Discord
 {
   public static class DiscordApplicationData
   {

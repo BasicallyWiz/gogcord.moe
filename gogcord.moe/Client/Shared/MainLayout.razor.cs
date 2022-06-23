@@ -1,13 +1,19 @@
 ﻿using DiscordOAuth2Helper;
-using gogcord.moe.Client.Data;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using System.Text.Json;
+
+using gogcord.moe.Shared.Discord;
+using gogcord.moe.Client.Data;
 namespace gogcord.moe.Client
 {
   public partial class MainLayout
   {
     [Inject]
     IJSRuntime? JS { get; set; }
+
+    [Inject]
+    HttpClient Http { get; set; }
 
     User activeUser = new("", "Not logged in", "", null, "", 0);
 
@@ -25,39 +31,22 @@ namespace gogcord.moe.Client
       activeUser = new("", "Not logged in", "", null, "", 0);
     }
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    protected override async Task OnInitializedAsync()
     {
-      if (!NavManager.Uri.Contains("Profile/") && firstRender || NavManager.Uri.Contains("Profile") && !NavManager.Uri.Contains("code=") && firstRender)
-      {
-        //  Collect and compile token from client
-        string clientTokenCallback = await JS.InvokeAsync<string>("ClientUser.getToken");
+      try {
+        //  Try to log in
+        if (!NavManager.Uri.Contains("/Profile") && activeUser.Username == "Not logged in")
+        {
+          HttpResponseMessage resp = await Http.PostAsync($"api/DiscordUser/CurrentUser?tokenString={await JS.InvokeAsync<string>("ClientUser.getToken", null)}", null);
+          CallbackUser user = JsonSerializer.Deserialize<CallbackUser>(await resp.Content.ReadAsStringAsync());
+          activeUser = user.User;
 
-        if (clientTokenCallback == null) return;
-        if (clientTokenCallback == "") return;
-
-        string[] clientTokenItems = clientTokenCallback.Split(", ");
-        CallbackToken token = new(clientTokenItems[0], int.Parse(clientTokenItems[1]), clientTokenItems[2], clientTokenItems[3], clientTokenItems[4]);
-
-        //  Using Old Token
-        await helper.SetBearerHeader(token);
-        CallbackUser? user = await helper.GetCurrentUser();
-        if (user.User == null) return;
-
-        activeUser = user.User;
-
-        if (user.User != null) await JS.InvokeVoidAsync("ClientUser.setUser", user);
+          JS.InvokeVoidAsync("ClientUser.setUser", user);
+        }
       }
-
-
-      if (activeUser.Username == "Not logged in")
+      catch(Exception e)
       {
-        string clientUserCallback = await JS.InvokeAsync<string>("ClientUser.getUser");
-        if (clientUserCallback == null) return;
-        if (clientUserCallback == "") return;
-
-        string[] obj = clientUserCallback.Split(", ");
-
-        activeUser = new(obj[0], obj[1], obj[2], null, "", 000);
+        Console.WriteLine($"There was an error with signin.\n{e}");
       }
     }
   }

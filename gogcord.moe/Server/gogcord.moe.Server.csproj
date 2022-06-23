@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\DiscordOAuth2Helper\DiscordOAuth2Helper.csproj" />
     <ProjectReference Include="..\Client\gogcord.moe.Client.csproj" />
     <ProjectReference Include="..\Shared\gogcord.moe.Shared.csproj" />
   </ItemGroup>
