@@ -16,7 +16,8 @@ namespace gogcord.moe.Client
 
     [Inject]
     IJSRuntime JS { get; set; }
-
+    [Inject]
+    HttpClient Http { get; set; }
 
     string? GetCodeFromUri()
     {
@@ -33,42 +34,21 @@ namespace gogcord.moe.Client
       return null;
     }
 
+    //  INFO: CORS BLOCKS SIGNIN FROM CLIENT; SIGN IN ON SERVER
+    //  Also it's a security thing
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-      if (GetCodeFromUri() != null && GetCodeFromUri() != await JS.InvokeAsync<string>("ClientUser.getOldAuth"))
+      if (firstRender && GetCodeFromUri() != await JS.InvokeAsync<string>("ClientUser.getOldAuth", null) || GetCodeFromUri() != null)
       {
-        OAuth2Helper Helper = new(DiscordApplicationData.Id, DiscordApplicationData.GetClientSecret());
+        //  Get and populate access token
+        HttpResponseMessage resp = await Http.PostAsync($"api/DiscordUser/Token?value={GetCodeFromUri()}", null);
+        await JS.InvokeVoidAsync("ClientUser.setToken", JsonSerializer.Deserialize<CallbackToken>(await resp.Content.ReadAsStringAsync()));
 
-        CallbackToken token = await Helper.GetAccessToken(GetCodeFromUri(), NavManager.BaseUri + "Profile/") as CallbackToken;
-        await Helper.SetBearerHeader(token);
-
-        CallbackUser callbackUser = (CallbackUser)await Helper.GetCurrentUser();
-
-        await JS.InvokeVoidAsync("ClientUser.setUser", callbackUser);
-        await JS.InvokeVoidAsync("ClientUser.setToken", token);
-        await JS.InvokeVoidAsync("ClientUser.storeOldAuth", GetCodeFromUri());
-      }
-      else if (GetCodeFromUri() != null && GetCodeFromUri() == await JS.InvokeAsync<string>("ClientUser.getOldAuth"))
-      {
-        OAuth2Helper Helper = new(DiscordApplicationData.Id, DiscordApplicationData.GetClientSecret());
-
-        string clientTokenCallback = await JS.InvokeAsync<string>("ClientUser.getToken");
-
-        if (clientTokenCallback == null) return;
-        if (clientTokenCallback == "") return;
-
-        string[] clientTokenItems = clientTokenCallback.Split(", ");
-        CallbackToken token = new(clientTokenItems[0], int.Parse(clientTokenItems[1]), clientTokenItems[2], clientTokenItems[3], clientTokenItems[4]);
-
-        //  Using Old Token
-        await Helper.SetBearerHeader(token);
-        CallbackUser? user = await Helper.GetCurrentUser();
-        if (user.User == null) return;
-
-        if (user.User != null) await JS.InvokeVoidAsync("ClientUser.setUser", user);
-
-        await JS.InvokeVoidAsync("ClientUser.setUser", user);
-        }
+        //  Get and populate user data
+        resp = await Http.PostAsync($"api/DiscordUser/CurrentUser?tokenString={await resp.Content.ReadAsStringAsync()}", null);
+        await JS.InvokeVoidAsync( "ClientUser.setUser", JsonSerializer.Deserialize<CallbackUser>(await resp.Content.ReadAsStringAsync()));
       }
     }
   }
+}
+//  TODO: MOVE ALL PROFILE COMPUTATION TO SERVER, VIA API

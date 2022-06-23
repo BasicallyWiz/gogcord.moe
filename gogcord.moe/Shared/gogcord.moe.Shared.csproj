@@ -9,4 +9,12 @@
   <ItemGroup>
     <SupportedPlatform Include="browser" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Gog1\Loaders\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\DiscordOAuth2Helper\DiscordOAuth2Helper.csproj" />
+  </ItemGroup>
 </Project>
