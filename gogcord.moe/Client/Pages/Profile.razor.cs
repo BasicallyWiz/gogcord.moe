@@ -12,12 +12,12 @@ namespace gogcord.moe.Client
   public partial class Profile
   {
     [Inject]
-    NavigationManager NavManager { get; set; }
+    NavigationManager? NavManager { get; set; }
 
     [Inject]
-    IJSRuntime JS { get; set; }
+    IJSRuntime? JS { get; set; }
     [Inject]
-    HttpClient Http { get; set; }
+    HttpClient? Http { get; set; }
 
     string? GetCodeFromUri()
     {
@@ -41,8 +41,10 @@ namespace gogcord.moe.Client
       if (firstRender && GetCodeFromUri() != await JS.InvokeAsync<string>("ClientUser.getOldAuth", null) || GetCodeFromUri() != null)
       {
         //  Get and populate access token
-        HttpResponseMessage resp = await Http.PostAsync($"api/DiscordUser/Token?value={GetCodeFromUri()}", null);
+        HttpResponseMessage resp = await Http.PostAsync($"api/DiscordUser/Token?value={GetCodeFromUri()}&baseUrl={NavManager.BaseUri}", null);
+
         await JS.InvokeVoidAsync("ClientUser.setToken", JsonSerializer.Deserialize<CallbackToken>(await resp.Content.ReadAsStringAsync()));
+
 
         //  Get and populate user data
         resp = await Http.PostAsync($"api/DiscordUser/CurrentUser?tokenString={await resp.Content.ReadAsStringAsync()}", null);

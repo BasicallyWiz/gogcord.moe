@@ -13,7 +13,7 @@ namespace gogcord.moe.Client
     IJSRuntime? JS { get; set; }
 
     [Inject]
-    HttpClient Http { get; set; }
+    HttpClient? Http { get; set; }
 
     User activeUser = new("", "Not logged in", "", null, "", 0);
 

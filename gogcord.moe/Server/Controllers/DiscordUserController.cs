@@ -26,8 +26,9 @@ namespace gogcord.moe.Server.Controllers
 
     // POST api/<DiscordUserController>
     [HttpPost("Token")]
-    public string GetToken(string value)
+    public string GetToken(string value, string baseUrl)
     {
+      Console.WriteLine(baseUrl);
       OAuth2Helper helper = new(DiscordApplicationData.Id, DiscordApplicationData.GetClientSecret());
       return JsonSerializer.Serialize((CallbackToken)helper.GetAccessToken(value, "https://localhost:7063/Profile/").Result);
     }
