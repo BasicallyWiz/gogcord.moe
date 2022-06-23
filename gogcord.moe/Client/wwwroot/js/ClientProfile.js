@@ -21,11 +21,7 @@
   clearUser: function () {
     var cookies = document.cookie.split(";");
     for (var i = 0; i < cookies.length; i++) {
-      if (cookies[i].startsWith("user=")) {
-        document.cookie = "user=; path=/; secure= true;";
-        document.cookie = `access_token=; path=/; secure= true;`;
-        document.cookie = `old_auth=; path=/; secure= true;`;
-      }
+      document.cookie = cookies[i] + ";expires=Thu, 22 Jun 2022 08: 22: 00 GMT;";
     }
   },
 

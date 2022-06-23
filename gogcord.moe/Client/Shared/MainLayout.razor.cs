@@ -29,13 +29,14 @@ namespace gogcord.moe.Client
     {
       await JS.InvokeVoidAsync("ClientUser.clearUser");
       activeUser = new("", "Not logged in", "", null, "", 0);
+      StateHasChanged();
     }
 
     protected override async Task OnInitializedAsync()
     {
       try {
         //  Try to log in
-        if (!NavManager.Uri.Contains("/Profile") && activeUser.Username == "Not logged in")
+        if (!NavManager.Uri.Contains("/Profile") && activeUser.Username == "Not logged in" && await JS.InvokeAsync<string>("ClientUser.getToken", null) != null)
         {
           HttpResponseMessage resp = await Http.PostAsync($"api/DiscordUser/CurrentUser?tokenString={await JS.InvokeAsync<string>("ClientUser.getToken", null)}", null);
           CallbackUser user = JsonSerializer.Deserialize<CallbackUser>(await resp.Content.ReadAsStringAsync());
