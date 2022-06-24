@@ -10,7 +10,7 @@ namespace gogcord.moe.Client
 
     public string? SetLinks()
     {
-      Cards.Add(new CardItemData($"{NavManager.BaseUri}images/Bluemonkey.png", "Title", "Description", new List<string>() { NavManager.BaseUri }));
+      Cards.Add(new CardItemData($"{NavManager.BaseUri}images/Bluemonkey.png", "Title", "Description", new List<string>() { NavManager.BaseUri + "Stuff/Tech" }));
 
       return null;
     }

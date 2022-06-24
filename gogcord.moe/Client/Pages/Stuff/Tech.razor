@@ -1,0 +1,19 @@
+﻿@page "/Stuff/Tech"
+@namespace gogcord.moe.Client
+
+@using gogcord.moe.Client.Data;
+
+@inject NavigationManager NavManager;
+
+<h3>Tech</h3>
+<p>Tech I've used, open source or otherwise, to make this site.</p>
+<div class="tech-list">
+  @foreach(ITechItemData Item in Items)
+  {
+    <div class="tech-item" onclick="window.open('@Item.ClickUrl')">
+      <img class="tech-item-logo" src="@Item.LogoUrl">
+      <p class="tech-item-title">@Item.Title</p>
+      <p class="tech-item-dev">@Item.Developer</p>
+    </div>
+  }
+</div>
