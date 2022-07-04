@@ -1,0 +1,14 @@
+FROM mcr.microsoft.com/dotnet/sdk:5.0
+WORKDIR /app
+COPY gogcord.moe/Client/gogcord.moe.Client.csproj gogcord.moe/Client/gogcord.moe.Client.csproj
+COPY gogcord.moe/Server/gogcord.moe.Server.csproj gogcord.moe/Server/gogcord.moe.Server.csproj
+COPY gogcord.moe/Shared/gogcord.moe.Shared.csproj gogcord.moe/Shared/gogcord.moe.Shared.csproj
+COPY DiscordOAuth2Helper/DiscordOAuth2Helper.csproj DiscordOAuth2Helper/DiscordOAuth2Helper.csproj
+
+RUN dotnet restore gogcord.moe/Client/gogcord.moe.Client.csproj
+RUN dotnet restore gogcord.moe/Server/gogcord.moe.Server.csproj
+RUN dotnet restore gogcord.moe/Shared/gogcord.moe.Shared.csproj
+RUN dotnet restore DiscordOAuth2Helper/DiscordOAuth2Helper.csproj
+
+COPY . .
+RUN dotnet publish -c Release -o /output --no-restore --nologo

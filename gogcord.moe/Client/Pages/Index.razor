@@ -46,6 +46,13 @@
   {
     <p>I think this page is loading. I'm not too sure.</p>  
   }
+  <!--button @onclick="Modal.theModal.ShowModal">
+
+  </button-->
 </div>
 
-//  TODO: MOVE ALL PROFILE COMPUTATION TO SERVER, VIA API
+@code {
+  string modalTitle = "Cocktober is over!";
+  string modalDesc = "Sorry gays, cocktober is over!";
+  Dictionary<string, string> modalDict = new() { {"burger", "http://burger.com/"} };
+}

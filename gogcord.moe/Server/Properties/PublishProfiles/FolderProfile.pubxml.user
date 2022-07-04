@@ -5,6 +5,6 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>C:\Repos\gogcord.moe\gogcord.moe\Server\bin\Release\net6.0\publish\</_PublishTargetUrl>
-    <History>True|2022-06-20T03:41:41.0328190Z;</History>
+    <History>True|2022-07-03T23:49:19.2186687Z;True|2022-07-02T00:48:56.3649483-07:00;True|2022-07-02T00:46:58.1484400-07:00;True|2022-07-01T15:04:40.9038645-07:00;True|2022-07-01T15:01:48.1903087-07:00;True|2022-07-01T14:52:18.0806214-07:00;True|2022-07-01T14:51:50.3978708-07:00;True|2022-06-19T20:41:41.0328190-07:00;</History>
   </PropertyGroup>
 </Project>

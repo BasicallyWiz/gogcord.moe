@@ -20,7 +20,7 @@ namespace gogcord.moe.Client
     private bool UserCardExpanded = false;
 
     private string? UserCardHidden => !UserCardExpanded ? "card-hidden" : null;
-    private void ToggleUserCard() { UserCardExpanded = !UserCardExpanded; _ = OnAfterRenderAsync(false); }
+    private void ToggleUserCard() { UserCardExpanded = !UserCardExpanded; OnAfterRenderAsync(false); }
     private void HideUserCard() { UserCardExpanded = false; }
 
     readonly OAuth2Helper helper = new(DiscordApplicationData.Id, DiscordApplicationData.GetClientSecret());
@@ -31,7 +31,6 @@ namespace gogcord.moe.Client
       activeUser = new("", "Not logged in", "", null, "", 0);
       StateHasChanged();
     }
-
     protected override async Task OnInitializedAsync()
     {
       try {
@@ -50,5 +49,6 @@ namespace gogcord.moe.Client
         Console.WriteLine($"There was an error with signin.\n{e}");
       }
     }
+
   }
 }

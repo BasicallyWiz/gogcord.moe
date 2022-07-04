@@ -23,5 +23,11 @@
   },
   isDarkTheme: function () {
     return window.matchMedia("(prefers-color-scheme: dark)").matches
+  },
+  removeModal: function (modalElement) {
+    if (modalElement.id == "modal-background") {
+      console.log("gogey");
+      DotNet.invokeMethodAsync('gogcord.moe.Client', 'StaticHideModal');
+    }
   }
 }

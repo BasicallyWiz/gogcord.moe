@@ -5,7 +5,10 @@
 }
 
 main {
-    flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  flex: 1;
 }
 
 .gog-sidebar {
@@ -108,4 +111,12 @@ main {
         top: 0;
         z-index: 1;
     }
+}
+
+.universal-modal {
+  position: absolute;
+  z-index: 100;
+
+  height: 100%;
+  width: 100%;
 }
